@@ -1,0 +1,169 @@
+body {
+  font-family: 'Lora', serif;
+  max-width: 1000px;
+  margin: auto;
+  background-color: black;
+  background-image: url('../images/bgSmaller.jpg');
+  background-repeat: no-repeat;
+  color: white;
+  overflow-x: hidden;
+}
+
+.mask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0.96;
+  background-color: black;
+  transition: opacity 5s ease-in-out;
+  -moz-transition: opacity 5s ease-in-out;
+  -webkit-transition: opacity 5s ease-in-out;
+}
+
+#quest-list {
+  border-right: 1px solid lightgrey;
+  padding: 1%;
+  max-height: 400px;
+  height: auto;
+  overflow-y: scroll;
+}
+
+#task-list {
+  max-height: 400px;
+  height: auto;
+  overflow-y: scroll;
+}
+
+
+.container {
+  max-width: 800px;
+  /* 
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); 
+  */
+}
+@media (max-width: 600px) {
+  
+  #quest-list {
+    border-bottom: 1px solid lightgrey;
+    padding: 1%;
+    height: 100px;
+    overflow-y: scroll;
+  }
+  
+  #task-list {
+    border-bottom: 1px solid lightgrey;
+    padding: 1%;
+    height: 100px;
+    overflow-y: scroll;
+  }
+  
+}
+
+#task-list {
+  padding: 1%
+}
+
+label {
+  display: inline-block;
+  width: 12px;
+  text-align: left;
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  cursor: pointer;
+}
+
+#header {
+  border-bottom: 1px solid lightgrey;
+}
+
+.selected {
+  font-size: 1.2em;
+  text-decoration: underline;
+}
+
+input[type="text"] {
+  border: none;
+  display:inline-block;
+  width: 80%;
+  background: transparent;
+}
+
+input[type="text"]:focus {
+  border-style: dashed;
+  border-color: white;
+  border-radius: 0px;
+  border-width: 0px 0px 1px 0px;
+  display:inline-block;
+}
+
+#adventure-name {
+  border: none;
+  display:inline-block;
+  width: 50%;
+  background: transparent;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.option {
+  text-align: center;
+  display: inline-block;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.button {
+  color: lightgrey;
+}
+
+button {
+  color: lightgrey;
+}
+
+.button:hover {
+  color: white;
+}
+
+button:hover {
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: lightgrey;
+  visibility: hidden;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+#adventure-arrow {
+  font-size: 1em;
+  transition: font-size 5s ease-in-out;
+}
+
+#adventure-arrow:hover {
+  font-size: 4em;
+}
