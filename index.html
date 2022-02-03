@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Quest Journal</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="css/modal.css" type="text/css" media="all" />
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  
+  <script src="quests.js" type="text/javascript" charset="utf-8"></script>
+  <script src="populate.js" type="text/javascript" charset="utf-8"></script>
+  <script src="refresh.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js" integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="mask"></div>
+  <div class="container" id="container">
+    <div id="header" class="row" style="margin-top: 5%">
+      <div class="four columns">
+        <h4>Quest Journal</h4>
+      </div>
+      <div id="adventure-list" class="seven columns" style="">
+        <div class="row">
+        <label class="adventure-arrow">&#8606;</label>
+        <input type="text" id="adventure-name" value="Adventure">
+        <label class="adventure-arrow">&#8608;</label>
+        </div>
+      </div>
+      <div class="one column">
+        <button id="myBtn" class="button option" style="font-size:28px">?</button>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div id="quests" class="five columns">
+        <div id="quest-list"></div>
+        <button onclick="quests.push(defaultQuest());makeSelection(quests.length-1);populate(quests);focusNewElement(quests, 'input')" style='padding-left: 6px; padding-right: 6px;'>New quest</button>
+      </div>
+      
+      <div id="tasks" class="seven columns">
+        <div id="task-list"></div>
+        <div id="reward">
+          <label id="rewardP"></label>
+          <input id="rewardInput"></input>
+        </div>
+        <button onclick="let selected = quests.map(d => d.selected).indexOf(true);quests[selected].tasks.push(defaultTask());populate(quests);focusNewElement(quests[selected].tasks, 'listItem')" style="padding-left: 6px; padding-right: 6px;">Add task</button>
+      </div>
+    </div>
+    <hr>
+    <button class="button option" onclick="save(quests)">Save</button>
+    <label id="load-file" class="button option" style="width: auto">
+      <input type="file" onchange="load(this.files[0]);"/>
+      Load
+    </label>
+
+    
+  </div>
+  
+  <script>
+    let selectedAdventure = 0;
+    refresh(adventures, selectedAdventure)
+  </script>
+  
+  <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p style="font-weight: bold">Welcome to your Quest Journal!</p>
+    <p>You probably have things to do. To keep track of them, and make them easier to think about, why not pretend your life is an RPG like Skyrim or something?</p>
+    <p>You don't have a job, you're an adventurer. You don't have work to do, you have quests to complete. You're probably the chosen one. You can handle anything.</p>
+    <em>Made by me (David Aikman)</em>
+  </div>
+  
+  <script src="modal.js" type="text/javascript" charset="utf-8"></script>
+  <!--<script src="maskShift.js" type="text/javascript" charset="utf-8"></script>-->
+</div>
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
