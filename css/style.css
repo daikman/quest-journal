@@ -3,7 +3,6 @@ body {
   max-width: 1000px;
   margin: auto;
   background-color: black;
-  background-image: url('../images/bgSmaller.jpg');
   background-repeat: no-repeat;
   color: white;
   overflow-x: hidden;
@@ -15,11 +14,7 @@ body {
   height: 100%;
   left: 0;
   top: 0;
-  opacity: 0.96;
-  background-color: black;
-  transition: opacity 5s ease-in-out;
-  -moz-transition: opacity 5s ease-in-out;
-  -webkit-transition: opacity 5s ease-in-out;
+  opacity: 0;
 }
 
 #quest-list {
@@ -39,29 +34,48 @@ body {
 
 .container {
   max-width: 800px;
-  /*
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  */
 }
-@media (max-width: 600px) {
+
+select {
+  color: white;
+  background-color: transparent;
+  height: 38px;
+  margin-top: 9px;
+  border-color: transparent;
+}
+
+select:focus {
+  border-color: white;
+}
+
+select option {
+  background-color: black;
+}
+
+.small-only {
+  display: none;
+}
+
+@media (max-width: 900px) {
 
   #quest-list {
-    border-bottom: 1px solid lightgrey;
+    /* border-bottom: 1px solid lightgrey; */
+
+    border: none;
     padding: 1%;
-    height: 100px;
-    overflow-y: scroll;
+    /* max-height: 100px; */
+    /* display: inline-flex; */
+    display: none;
+  }
+
+  .small-only {
+    display: inline-block;
   }
 
   #task-list {
-    border-bottom: 1px solid lightgrey;
+    border-top: 1px solid lightgrey;
     padding: 1%;
-    height: 100px;
-    overflow-y: scroll;
+    max-height: none;
   }
 
 }
@@ -159,11 +173,11 @@ button:hover {
   background: #555;
 }
 
-#adventure-arrow {
+/* #adventure-arrow {
   font-size: 1em;
   transition: font-size 5s ease-in-out;
 }
 
 #adventure-arrow:hover {
   font-size: 4em;
-}
+} */
