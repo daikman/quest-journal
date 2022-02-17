@@ -18,6 +18,19 @@ function removeSelectedQuest() {
   populate(quests)
 }
 
+function renameSelectedQuest() {
+  let quests = adventures.quests[selectedAdventure]
+  let selections = quests.map(d => d.selected)
+  let quest = quests[selections.indexOf(true)]
+
+  let name = prompt("Rename: " + quest.title, "Enter new name here...");
+
+  if (name != null) {
+    quest.title = name;
+    populate(quests);
+  }
+}
+
 function selectQuest(ind) {
   makeSelection(ind);
   populate(adventures.quests[selectedAdventure]);
