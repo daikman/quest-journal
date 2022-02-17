@@ -1,5 +1,5 @@
 adventures = {
-  titles: ["Adventure Doop"],
+  titles: ["The Grand Journey for Tea"],
   quests: [
     [
 	    {
@@ -139,10 +139,10 @@ function addSubTask(id) {
   populate(quests)
 }
 
-function save() {
-  let quests = adventures.quests[selectedAdventure]
+function saveQuests() {
+
   const a = document.createElement("a");
-  a.href = URL.createObjectURL(new Blob([JSON.stringify(quests, null, 2)], {
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(adventures, null, 2)], {
     type: "text/plain"
   }));
   a.setAttribute("download", "quests.txt");
@@ -156,7 +156,8 @@ function load(file) {
   var reader = new FileReader();
   reader.readAsText(file, "UTF-8")
   reader.onload = function (evt) {
-    adventures.quests[selectedAdventure] = JSON.parse(evt.target.result)
+    adventures = JSON.parse(evt.target.result)
+    selectedAdventure = 0
     populate(adventures.quests[selectedAdventure])
   }
   reader.onerror = function (evt) {
