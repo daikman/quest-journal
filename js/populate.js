@@ -152,7 +152,7 @@ function drawTasks(quest, taskList) {
         node.setAttribute("id", i + "listItem")
         node.setAttribute("onchange", "updateTaskName(this)")
         node.value = task.name[0]
-        node.style.width = "90%"
+        node.style.width = "75%"
 
         // make add subtask button
         let addSub = document.createElement("label")
