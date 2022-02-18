@@ -101,6 +101,7 @@ function drawQuest(quest, i, questList) {
     node.setAttribute("value", quest.title)
     node.setAttribute("id", i + "input")
     node.setAttribute("onchange", "updateQuestTitle(this);")
+    node.setAttribute("autocomplete", false)
     //node.style.width = "100%"
 
 
@@ -151,6 +152,7 @@ function drawTasks(quest, taskList) {
         node.setAttribute("type", "text")
         node.setAttribute("id", i + "listItem")
         node.setAttribute("onchange", "updateTaskName(this)")
+        node.setAttribute("autocomplete", false)
         node.value = task.name[0]
         node.style.width = "75%"
 
