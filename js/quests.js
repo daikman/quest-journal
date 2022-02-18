@@ -72,15 +72,17 @@ function defaultTask() {
 }
 
 function updateTaskName(element) {
-  let selected = quests.map(d => d.selected).indexOf(true)
+
+  let quests = adventures.quests[selectedAdventure]
+  let quest = quests[quests.map(d => d.selected).indexOf(true)]
 
   let i = element.id[0]
   let j = element.id[1]
 
   if (j == "l") {
-    quests[selected].tasks[i].name[0] = [element.value]
+    quest.tasks[i].name[0] = [element.value]
   } else {
-    quests[selected].tasks[i].name[j] = element.value
+    quest.tasks[i].name[j] = element.value
   }
 
 }
