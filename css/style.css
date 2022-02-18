@@ -31,7 +31,6 @@ body {
   overflow-y: scroll;
 }
 
-
 .container {
   max-width: 800px;
 }
@@ -120,6 +119,14 @@ input[type="text"]:focus {
   display:inline-block;
 }
 
+.modal input[type="text"] {
+  border: solid;
+  border-radius: 0px;
+  display:inline-block;
+  width: 80%;
+  background: transparent;
+}
+
 #adventure-name {
   border: none;
   display:inline-block;
@@ -151,6 +158,11 @@ button {
 }
 
 button:hover {
+  color: white;
+}
+
+.modal button {
+  background-color: black;
   color: white;
 }
 

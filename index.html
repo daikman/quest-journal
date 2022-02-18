@@ -30,8 +30,9 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
 
-  <script src="js/quests.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/api_calls.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/populate.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/quests.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/refresh.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/newQuest.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/addTask.js" type="text/javascript" charset="utf-8"></script>
@@ -89,20 +90,12 @@
 
     </div>
     <hr>
-    <button class="button option" onclick="saveQuests()">Save</button>
-    <label id="load-file" class="button option" style="width: auto">
-      <input type="file" onchange="load(this.files[0]);"/>
-      Load
-    </label>
+    <button id = "saveButton" class="button option">Save</button>
+    <button id = "loadButton" class="button option">Load</button>
     <button id="helpButton" class="button option" style="position:absolute; right: 0">Help</button>
 
 
   </div>
-
-  <script>
-    let selectedAdventure = 0;
-    refresh(adventures, selectedAdventure)
-  </script>
 
   <div id="myModal" class="modal">
 
@@ -112,6 +105,32 @@
       <p style="font-weight: bold">Welcome to your Quest Journal!</p>
       <p>You probably have things to do. To keep track of them, and make them easier to think about, why not pretend your life is a video game?</p>
       <p>You don't have a job, you're an adventurer. You don't have work to do, you have quests to complete. You're probably the chosen one.</p>
+    </div>
+
+  </div>
+
+  <div id="saveModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close" id="closeSave">&times;</span>
+      <p style="font-weight: bold">Save your Journal</p>
+      <input id="saveInput" type="text" name="" value="Enter name here" onchange="conflictWarning.style.display = 'none'">
+      <p style="color: red" id="saveWarning">Name taken</p>
+      <button type="button" name="button" onclick="newJournal(document.getElementById('saveInput').value)">Save journal</button>
+    </div>
+
+  </div>
+
+  <div id="loadModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close" id="closeLoad">&times;</span>
+      <p style="font-weight: bold">Which journal do you want to load?</p>
+      <input id="loadInput" type="text" name="" value="Enter name here" onchange="loadWarning.style.display = 'none'">
+      <p style="color: red" id="loadWarning">Journal not found</p>
+      <button type="button" name="button" onclick="loadQuests(document.getElementById('loadInput').value)">Load journal</button>
     </div>
 
   </div>

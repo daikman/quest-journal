@@ -1,4 +1,5 @@
-adventures = {
+// set default adventures
+let adventures = {
   titles: ["The Grand Journey for Tea"],
   quests: [
     [
@@ -17,19 +18,9 @@ adventures = {
   ]
 }
 
-quests = [
-	{
-		title: "Tea's company",
-		tasks: [
-				{name: ["Put on kettle"], complete: [false]},
-				{name: ["Get tea bag"], complete: [false]},
-				{name: ["Make tea", "Pour water", "Put tea bag in water"], complete: [false, false, false]}
-		],
-		reward: "a delicious cup of tea (rare item)",
-		selected: true,
-		complete: false
-	}
-]
+let board = "default"
+getAdventures(board)
+let selectedAdventure = 0;
 
 randomQuests = [
   "House of thieves", "Soul searching", "Go fish", "Dance of the sword",
@@ -139,29 +130,29 @@ function addSubTask(id) {
   populate(quests)
 }
 
-function saveQuests() {
+// function saveQuests() {
+//
+//   const a = document.createElement("a");
+//   a.href = URL.createObjectURL(new Blob([JSON.stringify(adventures, null, 2)], {
+//     type: "text/plain"
+//   }));
+//   a.setAttribute("download", "quests.txt");
+//   document.body.appendChild(a);
+//   a.click();
+//   document.body.removeChild(a);
+//
+// }
 
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(new Blob([JSON.stringify(adventures, null, 2)], {
-    type: "text/plain"
-  }));
-  a.setAttribute("download", "quests.txt");
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-
-}
-
-function load(file) {
-  var reader = new FileReader();
-  reader.readAsText(file, "UTF-8")
-  reader.onload = function (evt) {
-    adventures = JSON.parse(evt.target.result)
-    selectedAdventure = 0
-    populate(adventures.quests[selectedAdventure])
-  }
-  reader.onerror = function (evt) {
-      alert("Error reading file")
-  }
-
-}
+// function load(file) {
+//   var reader = new FileReader();
+//   reader.readAsText(file, "UTF-8")
+//   reader.onload = function (evt) {
+//     adventures = JSON.parse(evt.target.result)
+//     selectedAdventure = 0
+//     populate(adventures.quests[selectedAdventure])
+//   }
+//   reader.onerror = function (evt) {
+//       alert("Error reading file")
+//   }
+//
+// }
