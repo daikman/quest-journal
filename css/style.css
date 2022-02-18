@@ -35,6 +35,18 @@ body {
   max-width: 800px;
 }
 
+.nameDisplayArea {
+  margin-top: 12px;
+  float: right;
+  margin-right: 8px;
+  color: lightgrey;
+}
+
+#nameDisplay {
+  font-weight: bold;
+  color: white;
+}
+
 select {
   color: white;
   background-color: transparent;

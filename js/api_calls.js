@@ -10,9 +10,16 @@ function getAdventures(board) {
     ))
 }
 
-function checkAdventure(board) {
+function checkAdventure(id) {
 
-  let url = "https://quest-journal-api.herokuapp.com/check_board/" + board
+  // if id is empty it will cause an error on GET
+  // so assign it to a value that will not
+  // be found
+  if (id == "") {
+    id = "random" + random(99999999) + random(9999999)
+  }
+
+  let url = "https://quest-journal-api.herokuapp.com/check_board/" + id
 
   return fetch(url)
     .then(response => response.json())
@@ -39,6 +46,7 @@ function newJournal(id) {
 function saveQuests(id) {
 
   board = id
+  document.getElementById("nameDisplay").innerHTML = id
 
   let url = 'https://quest-journal-api.herokuapp.com/save_board'
   let bod = {}
@@ -74,6 +82,7 @@ function loadQuests(id) {
     if (found) {
       loadWarning.style.display = "none"
       board = id;
+      document.getElementById("nameDisplay").innerHTML = id
       getAdventures(id);
       loadModal.style.display = "none"
     } else {

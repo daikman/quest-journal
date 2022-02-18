@@ -65,4 +65,25 @@ window.onclick = function(event) {
   }
 }
 
+saveInput.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("saveModalButton").click();
+  }
+});
+
+loadInput.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("loadModalButton").click();
+  }
+});
+
+// pop up Welcome
 introModal.style.display = "block";

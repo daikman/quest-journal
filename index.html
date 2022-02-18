@@ -48,10 +48,17 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="mask"></div>
   <div class="container" id="container">
-    <div id="header" class="row" style="margin-top: 5%">
+    <div id="header" class="row" style="margin-top: 5%; position: relative;">
       <div class="four columns">
         <h4>Quest Journal</h4>
       </div>
+      <!-- <div class="eight columns nameDisplayArea"> -->
+        <div class="nameDisplayArea">
+          <p>Saved as: <span id="nameDisplay">unsaved!</span></p>
+        </div>
+
+      <!-- </div> -->
+
       <!-- <div id="adventure-list" class="seven columns" style="">
         <div class="row">
         <label class="adventure-arrow">&#8606;</label>
@@ -104,7 +111,9 @@
       <span class="close" id="closeIntro">&times;</span>
       <p style="font-weight: bold">Welcome to your Quest Journal!</p>
       <p>You probably have things to do. To keep track of them, and make them easier to think about, why not pretend your life is a video game?</p>
-      <p>You don't have a job, you're an adventurer. You don't have work to do, you have quests to complete. You're probably the chosen one.</p>
+      <p>You don't have a job, you're an adventurer. You don't have tasks to do, you have quests. You're probably the chosen one tbh.</p>
+      <button type="button" name="button" onclick="introModal.style.display = 'none';loadModal.style.display = 'block'">Load a journal</button>
+      <button type="button" name="button" onclick="introModal.style.display = 'none'">Start fresh</button>
     </div>
 
   </div>
@@ -115,9 +124,10 @@
     <div class="modal-content">
       <span class="close" id="closeSave">&times;</span>
       <p style="font-weight: bold">Save your Journal</p>
-      <input id="saveInput" type="text" name="" value="Enter name here" onchange="conflictWarning.style.display = 'none'">
+      <input id="saveInput" type="text" name="" placeholder="Enter journal name here" oninput="conflictWarning.style.display = 'none'">
       <p style="color: red" id="saveWarning">Name taken</p>
-      <button type="button" name="button" onclick="newJournal(document.getElementById('saveInput').value)">Save journal</button>
+      <p>Be aware that anyone who knows the name of your journal can access it. Or anyone who randomly guesses its name.</p>
+      <button type="button" id="saveModalButton" onclick="newJournal(document.getElementById('saveInput').value)">Save journal</button>
     </div>
 
   </div>
@@ -128,9 +138,9 @@
     <div class="modal-content">
       <span class="close" id="closeLoad">&times;</span>
       <p style="font-weight: bold">Which journal do you want to load?</p>
-      <input id="loadInput" type="text" name="" value="Enter name here" onchange="loadWarning.style.display = 'none'">
+      <input id="loadInput" type="text" name="" placeholder="Enter journal name here" oninput="loadWarning.style.display = 'none'">
       <p style="color: red" id="loadWarning">Journal not found</p>
-      <button type="button" name="button" onclick="loadQuests(document.getElementById('loadInput').value)">Load journal</button>
+      <button type="button" id="loadModalButton" onclick="loadQuests(document.getElementById('loadInput').value)">Load journal</button>
     </div>
 
   </div>
@@ -142,10 +152,10 @@
       <span class="close" id="closeHelp">&times;</span>
       <p style="font-weight: bold">How to use the Quest Journal</p>
       <p>
-        Change the names of quests and tasks by clicking on them and directly editing the text.
+        Select a quest by clicking the star next to it's name. Change the names of a quest or task by clicking on them and directly editing the text.
       </p>
       <p>
-        Add new quests and tasks using the NEW QUEST or ADD TASK button, respectively.
+        Add new quests and tasks using the NEW QUEST or ADD TASK button.
       </p>
       <p>
         Add sub-tasks using the "+" button next to a task.
@@ -154,8 +164,9 @@
         Remove any item using the adjacent "-" button.
       </p>
       <p>
-        Currently, the SAVE button downloads your quests as a text file.
-        Then the LOAD button asks for you to upload a previously saved text file.
+        When saving a journal, be aware that anyone who knows its name can access it.
+        Theoretically, someone who doesn't know its name, but just guesses random names, could also access it.
+        Also be aware that you <b>need to remember</b> the name of a journal, as there is currently no way to recover lost journals.
       </p>
     </div>
 
