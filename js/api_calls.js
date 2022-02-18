@@ -1,5 +1,5 @@
 function getAdventures(board) {
-  let url = "https://quest-journal-api.herokuapp.com/get_board/" + board
+  let url = "https://sordid-occipital-crayfish.glitch.me/get_board/" + board
   fetch(url)
     .then(response => response.json())
     .then(data => (
@@ -19,7 +19,7 @@ function checkAdventure(id) {
     id = "random" + random(99999999) + random(9999999)
   }
 
-  let url = "https://quest-journal-api.herokuapp.com/check_board/" + id
+  let url = "https://sordid-occipital-crayfish.glitch.me/check_board/" + id
 
   return fetch(url)
     .then(response => response.json())
@@ -48,7 +48,7 @@ function saveQuests(id) {
   board = id
   document.getElementById("nameDisplay").innerHTML = id
 
-  let url = 'https://quest-journal-api.herokuapp.com/save_board'
+  let url = 'https://sordid-occipital-crayfish.glitch.me/save_board'
   let bod = {}
   bod[id] = adventures
 
