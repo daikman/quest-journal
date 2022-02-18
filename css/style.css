@@ -36,14 +36,13 @@ body {
 }
 
 .nameDisplayArea {
-  margin-top: 12px;
-  float: right;
+  /* margin-top: 12px; */
+  /* float: right; */
   margin-right: 8px;
   color: lightgrey;
 }
 
-#nameDisplay {
-  font-weight: bold;
+#nameDisplay, #nameTime {
   color: white;
 }
 

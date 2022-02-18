@@ -6,7 +6,7 @@ function getAdventures(board) {
       adventures = data
     ))
     .then(data => (
-      populate(adventures.quests[0])
+      populate()
     ))
 }
 
@@ -46,7 +46,9 @@ function newJournal(id) {
 function saveQuests(id) {
 
   board = id
-  document.getElementById("nameDisplay").innerHTML = id
+  updateSaveName()
+  lastSaved = Date.now()
+  updateSaveTime(lastSaved)
 
   let url = 'https://sordid-occipital-crayfish.glitch.me/save_board'
   let bod = {}
@@ -78,11 +80,12 @@ function saveQuests(id) {
 }
 
 function loadQuests(id) {
+  lastSaved = "never"
   checkAdventure(id).then(found => {
     if (found) {
       loadWarning.style.display = "none"
       board = id;
-      document.getElementById("nameDisplay").innerHTML = id
+      updateSaveName();
       getAdventures(id);
       loadModal.style.display = "none"
     } else {

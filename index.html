@@ -30,15 +30,15 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
 
-  <script src="js/api_calls.js" type="text/javascript" charset="utf-8"></script>
-  <script src="js/populate.js" type="text/javascript" charset="utf-8"></script>
-  <script src="js/quests.js" type="text/javascript" charset="utf-8"></script>
-  <script src="js/refresh.js" type="text/javascript" charset="utf-8"></script>
-  <script src="js/newQuest.js" type="text/javascript" charset="utf-8"></script>
-  <script src="js/addTask.js" type="text/javascript" charset="utf-8"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script>
+
+  <script src="js/api_calls.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/populate.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/quests.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/newQuest.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/addTask.js" type="text/javascript" charset="utf-8"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js" integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </head>
@@ -52,13 +52,6 @@
       <div class="four columns">
         <h4>Quest Journal</h4>
       </div>
-      <!-- <div class="eight columns nameDisplayArea"> -->
-        <div class="nameDisplayArea">
-          <p>Saved as: <span id="nameDisplay">unsaved!</span></p>
-        </div>
-
-      <!-- </div> -->
-
       <!-- <div id="adventure-list" class="seven columns" style="">
         <div class="row">
         <label class="adventure-arrow">&#8606;</label>
@@ -99,7 +92,13 @@
     <hr>
     <button id = "saveButton" class="button option">Save</button>
     <button id = "loadButton" class="button option">Load</button>
+    &nbsp;&nbsp;
+    <button id = "newJournalButton" class="button option" onclick="location.reload()">New Journal</button>
     <button id="helpButton" class="button option" style="position:absolute; right: 0">Help</button>
+    <div class="nameDisplayArea">
+      <p>Saved as: <span id="nameDisplay">no name yet</span>
+      &nbsp; Last saved: <span id="nameTime"></span></p>
+    </div>
 
 
   </div>
@@ -175,6 +174,7 @@
   </div>
 
   <script src="js/modal.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/interval.js" type="text/javascript" charset="utf-8"></script>
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
