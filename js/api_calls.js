@@ -49,7 +49,7 @@ function newJournal(id) {
 }
 
 function saveQuests(id) {
-  loading(true)
+  loadingMini(true)
   board = id
   updateSaveName()
   lastSaved = Date.now()
@@ -76,7 +76,7 @@ function saveQuests(id) {
     })
     .then(function(data) {
         console.log('Request succeeded');
-        loading(false)
+        loadingMini(false)
     })
     .catch(function(error) {
         console.log('Request failed', error);
@@ -119,4 +119,16 @@ function loading(x) {
 
   }
 
+}
+
+function loadingMini(x) {
+  if (x) {
+
+    document.getElementById("mini-loading").style.display = "block"
+
+  } else {
+
+    document.getElementById("mini-loading").style.display = "none"
+
+  }
 }

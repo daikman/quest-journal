@@ -47,18 +47,21 @@ body {
   color: white;
 }
 
-/* #mini-loading {
-  width: 100px;
-  height: 38px;
-  position: absolute;
+#mini-loading {
+  width: 100%;
+  height: 36px;
+  position: fixed;
   right: 0;
   bottom: 0;
-  background-color: grey;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: none;
 }
 
-#mini-loading img {
-  width: 100%;
-} */
+#mini-loading p {
+  color: black;
+  margin-top: 6px;
+  margin-left: 16px;
+}
 
 select {
   color: white;
