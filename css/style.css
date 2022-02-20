@@ -47,6 +47,19 @@ body {
   color: white;
 }
 
+/* #mini-loading {
+  width: 100px;
+  height: 38px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: grey;
+}
+
+#mini-loading img {
+  width: 100%;
+} */
+
 select {
   color: white;
   background-color: transparent;

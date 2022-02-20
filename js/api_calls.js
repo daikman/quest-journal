@@ -1,5 +1,6 @@
 function getAdventures(board) {
   let url = "https://quest-journal-api.glitch.me/get_board/" + board
+  loading(true)
   fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -7,6 +8,9 @@ function getAdventures(board) {
     })
     .then(data => {
       loading(false);
+      if (board == "default") {
+        document.getElementById("myModal").style.display = "block"
+      }
       populate();
     })
 }
@@ -45,7 +49,7 @@ function newJournal(id) {
 }
 
 function saveQuests(id) {
-
+  loading(true)
   board = id
   updateSaveName()
   lastSaved = Date.now()
@@ -72,7 +76,7 @@ function saveQuests(id) {
     })
     .then(function(data) {
         console.log('Request succeeded');
-        alert("Journal saved")
+        loading(false)
     })
     .catch(function(error) {
         console.log('Request failed', error);
@@ -82,6 +86,8 @@ function saveQuests(id) {
 
 function loadQuests(id) {
   lastSaved = "never"
+  loading(true)
+  document.getElementById("loadModal").style.display = "none"
   checkAdventure(id).then(found => {
     if (found) {
       loadWarning.style.display = "none"
@@ -90,20 +96,27 @@ function loadQuests(id) {
       getAdventures(id);
       loadModal.style.display = "none"
     } else {
+      document.getElementById("loadModal").style.display = "block"
       loadWarning.style.display = "block"
     }
+
+    loading(false)
   })
 
 }
 
 function loading(x) {
+
   if (x) {
-    document.getElementById("loadingModal").style.display = "block"
+
     document.getElementById("container").style.display = "none"
+    document.getElementById("loadingModal").style.display = "block"
+
   } else {
+
+    document.getElementById("container").style.display = "block"
     document.getElementById("loadingModal").style.display = "none"
-    document.getElementById("container").style.display = "block"
-    document.getElementById("container").style.display = "block"
+
   }
 
 }

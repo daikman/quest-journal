@@ -134,3 +134,30 @@ function addSubTask(id) {
 
   populate(quests)
 }
+
+// function saveQuests() {
+//
+//   const a = document.createElement("a");
+//   a.href = URL.createObjectURL(new Blob([JSON.stringify(adventures, null, 2)], {
+//     type: "text/plain"
+//   }));
+//   a.setAttribute("download", "quests.txt");
+//   document.body.appendChild(a);
+//   a.click();
+//   document.body.removeChild(a);
+//
+// }
+
+// function load(file) {
+//   var reader = new FileReader();
+//   reader.readAsText(file, "UTF-8")
+//   reader.onload = function (evt) {
+//     adventures = JSON.parse(evt.target.result)
+//     selectedAdventure = 0
+//     populate(adventures.quests[selectedAdventure])
+//   }
+//   reader.onerror = function (evt) {
+//       alert("Error reading file")
+//   }
+//
+// }
