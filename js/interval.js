@@ -16,7 +16,7 @@ function updateSaveName() {
 setInterval(
   () => {
     if (lastSaved == "never") {
-      document.getElementsById("nameTime").textContent = ""
+      document.getElementById("nameTime").textContent = ""
     } else {
       updateSaveTime(Date.now());
     }

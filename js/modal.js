@@ -86,4 +86,4 @@ loadInput.addEventListener("keyup", function(event) {
 });
 
 // pop up Welcome
-introModal.style.display = "block";
+// introModal.style.display = "block";

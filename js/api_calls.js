@@ -2,12 +2,13 @@ function getAdventures(board) {
   let url = "https://quest-journal-api.glitch.me/get_board/" + board
   fetch(url)
     .then(response => response.json())
-    .then(data => (
+    .then(data => {
       adventures = data
-    ))
-    .then(data => (
-      populate()
-    ))
+    })
+    .then(data => {
+      loading(false);
+      populate();
+    })
 }
 
 function checkAdventure(id) {
@@ -92,5 +93,17 @@ function loadQuests(id) {
       loadWarning.style.display = "block"
     }
   })
+
+}
+
+function loading(x) {
+  if (x) {
+    document.getElementById("loadingModal").style.display = "block"
+    document.getElementById("container").style.display = "none"
+  } else {
+    document.getElementById("loadingModal").style.display = "none"
+    document.getElementById("container").style.display = "block"
+    document.getElementById("container").style.display = "block"
+  }
 
 }
