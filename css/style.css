@@ -33,6 +33,7 @@ body {
 
 .container {
   max-width: 800px;
+  display: none;
 }
 
 .nameDisplayArea {
