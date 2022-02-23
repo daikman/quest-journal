@@ -100,6 +100,10 @@ select option {
     display: inline-block;
   }
 
+  .big-only {
+    display: none;
+  }
+
   #task-list {
     border-top: 1px solid lightgrey;
     padding: 1%;

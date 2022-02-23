@@ -184,7 +184,7 @@ function drawTasks(quest, taskList) {
 
               // make some space
               let space = document.createElement("label")
-              space.textContent = "&nbsp;&nbsp;&nbsp;"
+              space.innerHTML = "&nbsp;&nbsp;&nbsp;"
 
               // make a bullet
               bullet = document.createElement("label")
@@ -193,9 +193,9 @@ function drawTasks(quest, taskList) {
               bullet.setAttribute("onclick", "updateTaskComplete(this.id);")
               // to get task on list, first letter and second letter as index
               if (task.complete[j]) {
-                bullet.textContent = "&#9746;"
+                bullet.innerHTML = "&#9746;"
               } else {
-                bullet.textContent = "&#9744;"
+                bullet.innerHTML = "&#9744;"
               }
 
               bullet.style.marginLeft = "32px"
