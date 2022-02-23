@@ -8,6 +8,15 @@ body {
   overflow-x: hidden;
 }
 
+#header {
+  border-bottom: 1px solid lightgrey;
+}
+#header p {
+  font-family: 'Parisienne', serif;
+  font-size: 48px;
+  font-weight: lighter;
+}
+
 .mask {
   position: fixed;
   width: 100%;
@@ -125,10 +134,6 @@ label {
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
   cursor: pointer;
-}
-
-#header {
-  border-bottom: 1px solid lightgrey;
 }
 
 .selected {
