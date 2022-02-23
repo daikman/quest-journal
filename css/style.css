@@ -214,6 +214,16 @@ button:hover {
   background: #555;
 }
 
+::-moz-selection { /* Code for Firefox */
+  color: black;
+  background: white;
+}
+
+::selection {
+  color: black;
+  background: white;
+}
+
 /* #adventure-arrow {
   font-size: 1em;
   transition: font-size 5s ease-in-out;

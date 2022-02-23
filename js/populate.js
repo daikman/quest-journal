@@ -37,7 +37,7 @@ function populate() {
 
 function fillQuestSelect(quest, i, ele) {
   let option = document.createElement("option")
-  option.innerHTML = quest.title
+  option.textContent = quest.title
   option.id = i + "selectQuest"
   option.onclick = "selectQuest(this.id[0])"
   ele.appendChild(option)
@@ -46,7 +46,7 @@ function fillQuestSelect(quest, i, ele) {
   let selections = adventures.quests[selectedAdventure].map(d => d.selected)
   let selected = selections.indexOf(true)
   if (i == selected) {
-    ele.value = option.innerHTML
+    ele.value = option.textContent
   }
 }
 
@@ -122,7 +122,7 @@ function drawQuest(quest, i, questList) {
     let removeQuest = document.createElement("label")
     removeQuest.setAttribute("id", i + "removeQuest")
     removeQuest.setAttribute("onclick", "removeQuest(this.id[0])")
-    removeQuest.innerHTML = "-"
+    removeQuest.textContent = "-"
 
     row.appendChild(removeQuest)
 
@@ -160,12 +160,12 @@ function drawTasks(quest, taskList) {
         let addSub = document.createElement("label")
         addSub.setAttribute("id", i + "addSub")
         addSub.setAttribute("onclick", "addSubTask(this.id);")
-        addSub.innerHTML = "+"
+        addSub.textContent = "+"
 
         let removeTask = document.createElement("label")
         removeTask.setAttribute("id", i + "removeTask")
         removeTask.setAttribute("onclick", "removeTask(this.id);")
-        removeTask.innerHTML = "-"
+        removeTask.textContent = "-"
 
         // append elements to row
         rowTask.appendChild(bullet)
@@ -184,7 +184,7 @@ function drawTasks(quest, taskList) {
 
               // make some space
               let space = document.createElement("label")
-              space.innerHTML = "&nbsp;&nbsp;&nbsp;"
+              space.textContent = "&nbsp;&nbsp;&nbsp;"
 
               // make a bullet
               bullet = document.createElement("label")
@@ -193,9 +193,9 @@ function drawTasks(quest, taskList) {
               bullet.setAttribute("onclick", "updateTaskComplete(this.id);")
               // to get task on list, first letter and second letter as index
               if (task.complete[j]) {
-                bullet.innerHTML = "&#9746;"
+                bullet.textContent = "&#9746;"
               } else {
-                bullet.innerHTML = "&#9744;"
+                bullet.textContent = "&#9744;"
               }
 
               bullet.style.marginLeft = "32px"
@@ -211,7 +211,7 @@ function drawTasks(quest, taskList) {
               let removeSub = document.createElement("label")
               removeSub.setAttribute("id", i + j + "removeTask")
               removeSub.setAttribute("onclick", "removeTask(this.id);populate(adventures.quests[selectedAdventure])")
-              removeSub.innerHTML = "-"
+              removeSub.textContent = "-"
 
               row.appendChild(bullet)
               row.appendChild(li)
@@ -229,7 +229,7 @@ function drawTasks(quest, taskList) {
 
       // reward message
       let rewardP = document.getElementById("rewardP")
-      rewardP.innerHTML = "Reward:"
+      rewardP.textContent = "Reward:"
       rewardP.style.width = "56px"
       rewardP.style.fontWeight = "normal"
       rewardP.style.textDecoration = "underline"
@@ -238,7 +238,7 @@ function drawTasks(quest, taskList) {
       let reward = document.getElementById("rewardInput")
       reward.setAttribute("type", "text")
       reward.setAttribute("value", quest.reward)
-      reward.setAttribute("onchange", "let selected = adventures.quests[selectedAdventure].map(d => d.selected).indexOf(true);quests[selected].reward = this.value")
+      reward.setAttribute("onchange", "let quests = adventures.quests[selectedAdventure];let selected = quests.map(d => d.selected).indexOf(true);quests[selected].reward = this.value")
       reward.style.width = "80%"
 
       row = document.getElementById("reward")
@@ -257,5 +257,6 @@ function focusNewElement(elements, append) {
   let id = i + append
 
   document.getElementById(id).focus()
+  document.getElementById(id).select()
 
 }
