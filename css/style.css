@@ -156,7 +156,7 @@ input[type="text"]:focus {
   display:inline-block;
 }
 
-.modal input[type="text"] {
+.modal input[type="text"], .modal input[type="password"] {
   border: solid;
   border-radius: 0px;
   display:inline-block;

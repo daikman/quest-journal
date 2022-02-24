@@ -20,11 +20,11 @@ btn.onclick = function() {
 var saveBtn = document.getElementById("saveButton");
 // When the user clicks on the button, open the help modal
 saveBtn.onclick = function() {
-  if (board == "default") {
+  if (adventures["password-for"] == "write" | adventures["password-for"] == "read-write") {
     saveModal.style.display = "block";
+    document.getElementById("savePasswordWarning").style.display = "none"
   } else {
-    // saveModal.style.display = "none";
-    saveQuests(board)
+    saveQuests()
   }
 }
 
@@ -65,15 +65,15 @@ window.onclick = function(event) {
   }
 }
 
-saveInput.addEventListener("keyup", function(event) {
-  // Number 13 is the "Enter" key on the keyboard
-  if (event.keyCode === 13) {
-    // Cancel the default action, if needed
-    event.preventDefault();
-    // Trigger the button element with a click
-    document.getElementById("saveModalButton").click();
-  }
-});
+// saveInput.addEventListener("keyup", function(event) {
+//   // Number 13 is the "Enter" key on the keyboard
+//   if (event.keyCode === 13) {
+//     // Cancel the default action, if needed
+//     event.preventDefault();
+//     // Trigger the button element with a click
+//     document.getElementById("saveModalButton").click();
+//   }
+// });
 
 loadInput.addEventListener("keyup", function(event) {
   // Number 13 is the "Enter" key on the keyboard
@@ -82,6 +82,26 @@ loadInput.addEventListener("keyup", function(event) {
     event.preventDefault();
     // Trigger the button element with a click
     document.getElementById("loadModalButton").click();
+  }
+});
+
+document.getElementById("loadPassword").addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("loadModalButton").click();
+  }
+});
+
+document.getElementById("savePassword").addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("saveModalButton").click();
   }
 });
 

@@ -1,17 +1,24 @@
-function getAdventures(board) {
-  let url = "https://quest-journal-api.glitch.me/get_board/" + board
+function getAdventures(board, password = "") {
+  let noPassword = password == ""
+  if (noPassword) {
+    password = Math.random(9999999999) + Math.random(9999999999)
+  }
+  let url = "https://quest-journal-api.glitch.me/get_board/" + board + "/" + password
   loading(true)
   fetch(url)
     .then(response => response.json())
     .then(data => {
-      adventures = data
-    })
-    .then(data => {
-      loading(false);
-      if (board == "default") {
-        document.getElementById("myModal").style.display = "block"
+      if (data == "wrong password") {
+        loading(false);
+        loadModal.style.display = "block"
+        document.getElementById("loadPasswordWarning").display = "block"
+        document.getElementById("loadPasswordWarning").textContent = "Incorrect password"
+      } else {
+        adventures = data
+        loading(false);
+        loadModal.style.display = "none"
+        populate();
       }
-      populate();
     })
 }
 
@@ -21,7 +28,7 @@ function checkAdventure(id) {
   // so assign it to a value that will not
   // be found
   if (id == "") {
-    id = "random" + random(99999999) + random(9999999)
+    id = "random" + Math.random(99999999) + Math.random(9999999)
   }
 
   let url = "https://quest-journal-api.glitch.me/check_board/" + id
@@ -48,7 +55,12 @@ function newJournal(id) {
 
 }
 
-function saveQuests(id) {
+function saveQuests() {
+  id = board
+  password = document.getElementById("savePassword").value
+  if (password == "") {
+    password = Math.random(999999999999) + Math.random(1212212121212)
+  }
   loadingMini(true)
   board = id
   updateSaveName()
@@ -58,6 +70,7 @@ function saveQuests(id) {
   let url = 'https://quest-journal-api.glitch.me/save_board'
   let bod = {}
   bod[id] = adventures
+  bod["password"] = password
 
   let config = {
       method: 'POST',
@@ -71,36 +84,40 @@ function saveQuests(id) {
   }
 
   fetch(url, config)
-    .then(function(response) {
+    .then(response => {
         return response.json();
     })
-    .then(function(data) {
-        console.log('Request succeeded');
+    .then(data => {
+        if (data == "quests saved") {
+          document.getElementById("savePasswordWarning").style.display = "none"
+          saveModal.style.display = "none"
+        } else {
+          document.getElementById("savePasswordWarning").style.display = "block"
+        }
         loadingMini(false)
     })
-    .catch(function(error) {
-        console.log('Request failed', error);
-    });
 
 }
 
-function loadQuests(id) {
+function loadQuests() {
+  id = document.getElementById('loadInput').value
+  password = document.getElementById('loadPassword').value
   lastSaved = "never"
   loading(true)
   document.getElementById("loadModal").style.display = "none"
   checkAdventure(id).then(found => {
     if (found) {
       loadWarning.style.display = "none"
+      document.getElementById("loadPasswordWarning").display = "none"
       board = id;
       updateSaveName();
-      getAdventures(id);
-      loadModal.style.display = "none"
+      getAdventures(id, password);
+
     } else {
       document.getElementById("loadModal").style.display = "block"
       loadWarning.style.display = "block"
-    }
 
-    loading(false)
+    }
   })
 
 }

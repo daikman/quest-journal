@@ -143,12 +143,20 @@
     <div class="modal-content">
       <span class="close" id="closeSave">&times;</span>
       <p style="font-weight: bold">Save your Journal</p>
-      <input id="saveInput" type="text" name="" placeholder="Enter journal name here" oninput="conflictWarning.style.display = 'none'">
-      <p style="color: red" id="saveWarning">Name taken</p>
-      <p>Be aware that anyone who knows the name of your journal can access it. Or anyone who randomly guesses its name.</p>
-      <button type="button" id="saveModalButton" onclick="newJournal(document.getElementById('saveInput').value)">Save journal</button>
+      <p id="saveNameLabel"></p>
+      <input id="savePassword" type="password" name="" placeholder="Enter password" autocomplete="off">
+      <p id="savePasswordWarning" style="color: red; display: 'none'">Incorrect password</p>
+      <button type="button" id="saveModalButton" onclick="saveQuests()">Save journal</button>
     </div>
 
+  </div>
+
+  <div id="newModal" class="modal">
+    <div class="modal-content">
+      <span></span>
+      <input id="saveInput" type="text" name="" placeholder="Enter journal name here" oninput="conflictWarning.style.display = 'none'">
+      <p style="color: red" id="saveWarning">Name taken</p>
+    </div>
   </div>
 
   <div id="loadModal" class="modal">
@@ -157,9 +165,11 @@
     <div class="modal-content">
       <span class="close" id="closeLoad">&times;</span>
       <p style="font-weight: bold">Which journal do you want to load?</p>
-      <input id="loadInput" type="text" name="" placeholder="Enter journal name here" oninput="loadWarning.style.display = 'none'">
+      <input id="loadInput" type="text" name="" placeholder="Journal name" oninput="loadWarning.style.display = 'none'">
       <p style="color: red" id="loadWarning">Journal not found</p>
-      <button type="button" id="loadModalButton" onclick="loadQuests(document.getElementById('loadInput').value)">Load journal</button>
+      <input id="loadPassword" type="password" name="" placeholder="Password (if required)" autocomplete="off">
+      <p style="color: red" id="loadPasswordWarning"></p>
+      <button type="button" id="loadModalButton" onclick="loadQuests()">Load journal</button>
     </div>
 
   </div>
