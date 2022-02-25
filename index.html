@@ -99,7 +99,7 @@
     <button id = "saveButton" class="button option">Save</button>
     <button id = "loadButton" class="button option">Load</button>
     &nbsp;&nbsp;
-    <button id = "newJournalButton" class="button option" onclick="location.reload()">New Journal</button>
+    <button id = "newJournalButton" class="button option" onclick="document.getElementById('newModal').style.display = 'block'">New Journal</button>
     <button id="helpButton" class="button option" style="position:absolute; right: 0">Help</button>
     <div class="nameDisplayArea">
       <p>Saved as: <span id="nameDisplay">no name yet</span>
@@ -123,7 +123,7 @@
 
   </div>
 
-  <div id="myModal" class="modal">
+  <div id="myModal" class="modal" onload='this.style.display = "block"'>
 
     <!-- Modal content -->
     <div class="modal-content">
@@ -132,7 +132,7 @@
       <p>You probably have things to do. To keep track of them, and make them easier to think about, why not pretend your life is a video game?</p>
       <p>You don't have a job, you're an adventurer. You don't have tasks to do, you have quests. You're probably the chosen one tbh.</p>
       <button type="button" name="button" onclick="introModal.style.display = 'none';loadModal.style.display = 'block'">Load a journal</button>
-      <button type="button" name="button" onclick="introModal.style.display = 'none'">Start fresh</button>
+      <button type="button" name="button" onclick="introModal.style.display = 'none';newModal.style.display = 'block'">Start fresh</button>
     </div>
 
   </div>
@@ -153,9 +153,22 @@
 
   <div id="newModal" class="modal">
     <div class="modal-content">
-      <span></span>
-      <input id="saveInput" type="text" name="" placeholder="Enter journal name here" oninput="conflictWarning.style.display = 'none'">
-      <p style="color: red" id="saveWarning">Name taken</p>
+      <span class="close" id="closeNew">&times;</span>
+      <h3>New journal</h3>
+      <b>Journal name:</b>
+      <input id="newInput" type="text" name="" placeholder="Enter journal name here" oninput="conflictWarning.style.display = 'none'">
+      <p style="color: red" id="conflictWarning">Name taken</p>
+      <br><b>Journal password:</b>
+      <input id="newPassword" type="text" name="" placeholder="Enter password here"
+      oninput="document.getElementById('passwordWarning').style.display = 'none'">
+      <p style="color: red; display: none;" id="passwordWarning">Password needed</p>
+      <hr><b>&nbsp;Without the password...</b>
+      <select id="privacyInput">
+        <option value="write">...anyone can see this journal.</option>
+        <option value="read-write">...no one can see this journal.</option>
+      </select>
+      <p>And no one can save changes to this journal without the password.</p>
+      <button type="button" id="newJournalSubmit" onclick="newJournal()">Create journal</button>
     </div>
   </div>
 

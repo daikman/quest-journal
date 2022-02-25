@@ -24,6 +24,17 @@
   overflow-y: scroll;
 }
 
+.modal select {
+  background-color: white;
+  color: black;
+  width: 90%
+}
+
+.modal option {
+  background-color: white;
+  color: black;
+}
+
 #loadingModal .modal-content {
   padding: 0px;
   overflow-x: hidden;

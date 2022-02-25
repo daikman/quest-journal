@@ -2,9 +2,9 @@
 var introModal = document.getElementById("myModal");
 var helpModal = document.getElementById("helpModal")
 var saveModal = document.getElementById("saveModal")
-var saveInput = document.getElementById("saveInput")
+var newInput = document.getElementById("newInput")
 var loadModal = document.getElementById("loadModal")
-let conflictWarning = document.getElementById("saveWarning")
+let conflictWarning = document.getElementById("conflictWarning")
 conflictWarning.style.display = "none"
 let loadWarning = document.getElementById("loadWarning")
 loadWarning.style.display = "none"
@@ -20,7 +20,9 @@ btn.onclick = function() {
 var saveBtn = document.getElementById("saveButton");
 // When the user clicks on the button, open the help modal
 saveBtn.onclick = function() {
-  if (adventures["password-for"] == "write" | adventures["password-for"] == "read-write") {
+  if (board == "default") {
+    document.getElementById('newModal').style.display = 'block'
+  } else if (adventures["password-for"] == "write" | adventures["password-for"] == "read-write") {
     saveModal.style.display = "block";
     document.getElementById("savePasswordWarning").style.display = "none"
   } else {
@@ -41,6 +43,7 @@ var introSpan = document.getElementById("closeIntro");
 var helpSpan = document.getElementById("closeHelp");
 var saveSpan = document.getElementById("closeSave");
 var loadSpan = document.getElementById("closeLoad");
+var newSpan = document.getElementById("closeNew");
 // When the user clicks on <span> (x), close the modal
 introSpan.onclick = function() {
   introModal.style.display = "none";
@@ -54,6 +57,9 @@ saveSpan.onclick = function() {
 loadSpan.onclick = function() {
   loadModal.style.display = "none";
 }
+newSpan.onclick = function() {
+  newModal.style.display = "none";
+}
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -63,9 +69,18 @@ window.onclick = function(event) {
   if (event.target == helpModal) {
     helpModal.style.display = "none";
   }
+  if (event.target == saveModal) {
+    saveModal.style.display = "none";
+  }
+  if (event.target == newModal) {
+    newModal.style.display = "none";
+  }
+  if (event.target == loadModal) {
+    loadModal.style.display = "none";
+  }
 }
 
-// saveInput.addEventListener("keyup", function(event) {
+// newInput.addEventListener("keyup", function(event) {
 //   // Number 13 is the "Enter" key on the keyboard
 //   if (event.keyCode === 13) {
 //     // Cancel the default action, if needed

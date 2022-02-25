@@ -19,11 +19,11 @@ let adventures = {
 }
 
 loading(true)
-
 let board = "default"
 getAdventures(board)
 let selectedAdventure = 0;
 let lastSaved = "never"
+introModal.style.display = "block"
 
 randomQuests = [
   "House of thieves", "Soul searching", "Go fish", "Dance of the sword",

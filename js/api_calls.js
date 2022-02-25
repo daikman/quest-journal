@@ -42,16 +42,77 @@ function checkAdventure(id) {
 
 }
 
-function newJournal(id) {
-  checkAdventure(id).then(conflict => {
-    if (conflict) {
-      conflictWarning.style.display = "block"
-    } else {
-      conflictWarning.style.display = "none"
-      saveModal.style.display = "none"
-      saveQuests(id)
-    }
-  })
+// function newJournal(id) {
+//   checkAdventure(id).then(conflict => {
+//     if (conflict) {
+//       conflictWarning.style.display = "block"
+//     } else {
+//       conflictWarning.style.display = "none"
+//       newModal.style.display = "none"
+//       newAPI()
+//     }
+//   })
+//
+// }
+
+function newJournal() {
+  let id = document.getElementById("newInput").value
+  if (id == "") {
+    conflictWarning.textContent = "Name needed"
+    conflictWarning.style.display = "block"
+    return
+  }
+
+  let password = document.getElementById("newPassword").value
+  if (password == "") {
+    document.getElementById("passwordWarning").style.display = "block"
+    return
+  }
+
+  let url = 'https://quest-journal-api.glitch.me/new_board'
+  let bod = {}
+  bod[id] = adventures
+  bod[id]["password-for"] = document.getElementById("privacyInput").value
+  bod[id]["password"] = password
+  bod["oldBoard"] = board
+
+  let config = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(
+        bod
+      )
+  }
+  loading(true)
+  document.getElementById("newModal").style.display = "none"
+  fetch(url, config)
+    .then(response => {
+
+        return response.json()
+
+    })
+    .then(data => {
+
+        if (data == "name taken") {
+          conflictWarning.textContent = "Name taken"
+          conflictWarning.style.display = "block"
+          document.getElementById("newModal").style.display = "block"
+        } else if (data) {
+          conflictWarning.style.display = "none"
+          document.getElementById("passwordWarning").style.display = "none"
+          adventures = data
+          board = id
+          populate()
+          updateSaveName()
+          lastSaved = Date.now()
+          updateSaveTime(lastSaved)
+        }
+        loading(false)
+
+    })
 
 }
 
@@ -62,10 +123,6 @@ function saveQuests() {
     password = Math.random(999999999999) + Math.random(1212212121212)
   }
   loadingMini(true)
-  board = id
-  updateSaveName()
-  lastSaved = Date.now()
-  updateSaveTime(lastSaved)
 
   let url = 'https://quest-journal-api.glitch.me/save_board'
   let bod = {}
@@ -91,6 +148,9 @@ function saveQuests() {
         if (data == "quests saved") {
           document.getElementById("savePasswordWarning").style.display = "none"
           saveModal.style.display = "none"
+          updateSaveName()
+          lastSaved = Date.now()
+          updateSaveTime(lastSaved)
         } else {
           document.getElementById("savePasswordWarning").style.display = "block"
         }
