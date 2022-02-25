@@ -1,9 +1,9 @@
-function getAdventures(board, password = "") {
+function getAdventures(id, password = "") {
   let noPassword = password == ""
   if (noPassword) {
     password = Math.random(9999999999) + Math.random(9999999999)
   }
-  let url = "https://quest-journal-api.glitch.me/get_board/" + board + "/" + password
+  let url = "https://quest-journal-api.glitch.me/get_board/" + id + "/" + password
   loading(true)
   fetch(url)
     .then(response => response.json())
@@ -17,6 +17,10 @@ function getAdventures(board, password = "") {
         adventures = data
         loading(false);
         loadModal.style.display = "none"
+        board = id
+        if (board == "default") {
+          introModal.style.display = "block"
+        }
         populate();
       }
     })
@@ -169,7 +173,6 @@ function loadQuests() {
     if (found) {
       loadWarning.style.display = "none"
       document.getElementById("loadPasswordWarning").display = "none"
-      board = id;
       updateSaveName();
       getAdventures(id, password);
 

@@ -132,7 +132,7 @@
       <p>You probably have things to do. To keep track of them, and make them easier to think about, why not pretend your life is a video game?</p>
       <p>You don't have a job, you're an adventurer. You don't have tasks to do, you have quests. You're probably the chosen one tbh.</p>
       <button type="button" name="button" onclick="introModal.style.display = 'none';loadModal.style.display = 'block'">Load a journal</button>
-      <button type="button" name="button" onclick="introModal.style.display = 'none';newModal.style.display = 'block'">Start fresh</button>
+      <button type="button" name="button" onclick="introModal.style.display = 'none';">Start fresh</button>
     </div>
 
   </div>
@@ -144,7 +144,8 @@
       <span class="close" id="closeSave">&times;</span>
       <p style="font-weight: bold">Save your Journal</p>
       <p id="saveNameLabel"></p>
-      <input id="savePassword" type="password" name="" placeholder="Enter password" autocomplete="off">
+      <input id="savePassword" type="password" name="" placeholder="Enter password" autocomplete="off"
+      oninput="document.getElementById('savePasswordWarning').style.display = 'none'">
       <p id="savePasswordWarning" style="color: red; display: 'none'">Incorrect password</p>
       <button type="button" id="saveModalButton" onclick="saveQuests()">Save journal</button>
     </div>
