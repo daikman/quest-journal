@@ -87,11 +87,12 @@
       <div id="tasks" class="seven columns">
 
         <div id="task-list"></div>
+        <button onclick="addTask();resizeCanvas($(window).width() + 100, $('body').height() + 200);" style="padding-left: 6px; padding-right: 6px;">Add task</button>
         <div id="reward">
           <label id="rewardP"></label>
           <input id="rewardInput"></input>
         </div>
-        <button onclick="addTask();resizeCanvas($(window).width() + 100, $('body').height() + 200);" style="padding-left: 6px; padding-right: 6px;">Add task</button>
+
       </div>
 
     </div>
@@ -207,9 +208,13 @@
         Remove any item using the adjacent "-" button.
       </p>
       <p>
-        When saving a journal, be aware that anyone who knows its name can access it.
-        Theoretically, someone who doesn't know its name, but just guesses random names, could also access it.
-        Also be aware that you <b>need to remember</b> the name of a journal, as there is currently no way to recover lost journals.
+        To create a new journal, click the NEW JOURNAL button. You can choose the name of the journal,
+        the password for the journal, and what the password is for. Journals can either be read-only or private.
+        Read-only means that anyone with the name of the journal can load it, but cannot save any changes they make to it.
+        Journals can also be private, so that users need a password to access it.
+      <p>
+        Also be aware that you <b>need to remember</b> the name of a journal,
+        and its password, as there is currently no way to recover lost credentials.
       </p>
     </div>
 

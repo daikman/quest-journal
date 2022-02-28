@@ -35,6 +35,12 @@
   color: black;
 }
 
+/* #newModal .modal-content {
+  margin: 5% auto;
+  max-width: none;
+  max-height: 300px;
+} */
+
 #loadingModal .modal-content {
   padding: 0px;
   overflow-x: hidden;
