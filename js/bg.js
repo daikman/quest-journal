@@ -51,5 +51,6 @@ function draw() {
 }
 
 function windowResized() {
-  resizeCanvas($(window).width() + 100, $(window).height() + 200);
+  // resizeCanvas($(window).width() + 100, $(window).height() + 200);
+  resizeCanvas(windowWidth, document.documentElement.scrollHeight)
 }

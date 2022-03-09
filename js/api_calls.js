@@ -18,6 +18,7 @@ function getAdventures(id, password = "") {
         loading(false);
         loadModal.style.display = "none"
         board = id
+        updateSaveName()
         if (board == "default") {
           introModal.style.display = "block"
         }

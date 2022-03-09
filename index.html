@@ -87,7 +87,7 @@
       <div id="tasks" class="seven columns">
 
         <div id="task-list"></div>
-        <button onclick="addTask();resizeCanvas($(window).width() + 100, $('body').height() + 200);" style="padding-left: 6px; padding-right: 6px;">Add task</button>
+        <button onclick="addTask();resizeCanvas(windowWidth, document.documentElement.scrollHeight);" style="padding-left: 6px; padding-right: 6px;">Add task</button>
         <div id="reward">
           <label id="rewardP"></label>
           <input id="rewardInput"></input>

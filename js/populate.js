@@ -238,8 +238,9 @@ function drawTasks(quest, taskList) {
       let reward = document.getElementById("rewardInput")
       reward.setAttribute("type", "text")
       reward.setAttribute("value", quest.reward)
+      reward.setAttribute("autocomplete", "off")
       reward.setAttribute("onchange", "let quests = adventures.quests[selectedAdventure];let selected = quests.map(d => d.selected).indexOf(true);quests[selected].reward = this.value")
-      reward.setAttribute("autocomplete", false)
+
       reward.style.width = "80%"
 
       row = document.getElementById("reward")
@@ -247,8 +248,7 @@ function drawTasks(quest, taskList) {
 
       row.appendChild(rewardP)
       row.appendChild(reward)
-      //taskList.appendChild(row)
-
+      
     }
 }
 

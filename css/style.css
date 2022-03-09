@@ -8,6 +8,10 @@ body {
   overflow-x: hidden;
 }
 
+#reward {
+  display: none;
+}
+
 #header {
   border-bottom: 1px solid lightgrey;
 }

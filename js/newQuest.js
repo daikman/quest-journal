@@ -3,6 +3,7 @@ function newQuest() {
   makeSelection(adventures.quests[selectedAdventure].length-1)
   populate(adventures.quests[selectedAdventure])
   focusNewElement(adventures.quests[selectedAdventure], 'input')
+  resizeCanvas(windowWidth, document.documentElement.scrollHeight);
 }
 
 function removeQuest(ind) {
