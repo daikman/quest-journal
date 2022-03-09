@@ -239,6 +239,7 @@ function drawTasks(quest, taskList) {
       reward.setAttribute("type", "text")
       reward.setAttribute("value", quest.reward)
       reward.setAttribute("onchange", "let quests = adventures.quests[selectedAdventure];let selected = quests.map(d => d.selected).indexOf(true);quests[selected].reward = this.value")
+      reward.setAttribute("autocomplete", false)
       reward.style.width = "80%"
 
       row = document.getElementById("reward")
