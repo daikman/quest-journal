@@ -41,3 +41,9 @@ function updateQuestTitle(ele) {
   let quests = adventures.quests[selectedAdventure]
   quests[ele.id[0]].title = ele.value;
 }
+
+function updateReward(value) {
+  let quests = adventures.quests[selectedAdventure]
+  let selected = quests.map(d => d.selected).indexOf(true)
+  quests[selected].reward = value
+}

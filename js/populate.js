@@ -1,16 +1,17 @@
 function populate() {
   let quests = adventures.quests[selectedAdventure]
+
+  // clear elements
   $("#quest-list").empty()
   $("#task-list").empty()
   $("#quest-drop select").empty()
-  // get elements
-  let questList = document.getElementById("quest-list").appendChild(
+
+  // define elements
+  let questList = $("#quest-list")[0].appendChild(
     document.createElement("UL")
   )
-  let taskList = document.getElementById("task-list")
-
-  // select drop for smaller screens
-  let drop = document.getElementById("quest-drop").getElementsByTagName("select")[0]
+  let taskList = $("#task-list")[0]
+  let drop = $("#quest-drop")[0].getElementsByTagName("select")[0]
 
   // if no quest selected, makeSelection(quests.length-1)
   let selections = quests.map(d => d.selected)
@@ -29,17 +30,23 @@ function populate() {
     fillQuestSelect(quest, i, drop)
 
     // create elements for each task of selected quest
-    drawTasks(quest, taskList)
+    if (quest.selected) {
+      drawTasks(quest, taskList)
+    }
 
   }
 
 }
 
 function fillQuestSelect(quest, i, ele) {
-  let option = document.createElement("option")
-  option.textContent = quest.title
-  option.id = i + "selectQuest"
-  option.onclick = "selectQuest(this.id[0])"
+  let option = createEle("option",
+    {
+      textContent: quest.title,
+      id: i + "selectQuest",
+      onclick: function() {selectQuest(this.id[0])}
+    },
+    {}
+  )
   ele.appendChild(option)
 
   let quests = adventures.quests[selectedAdventure]
@@ -56,200 +63,199 @@ function makeSelection(ind) {
   for (quest of adventures.quests[selectedAdventure]) {
     quest.selected = false
   }
-
   // set selected quest.selected to true
   adventures.quests[selectedAdventure][ind].selected = true
 
 }
 
-function createRow() {
-  let r = document.createElement("div")
-  r.setAttribute("class", "row")
-
+function createRow(children) {
+  let r = createEle("div", {class: "row"}, {})
+  for (let i in children) {
+    r.appendChild(children[i])
+  }
   return(r)
 }
 
 function drawQuest(quest, i, questList) {
-    // create row for big screens
-    let row = createRow()
-    questList.appendChild(row)
 
     // create button
-    let butt = document.createElement("label")
-    butt.setAttribute("class", "quest-select")
-
-    butt.setAttribute("id", i + "button")
-    butt.setAttribute("onclick", "selectQuest(this.id[0]);")
-    butt.style.cursor = "pointer"
-    if (quest.complete) {
-      butt.style.color = "lightgrey";
-    } else {
-      butt.style.color = "white";
-    }
-
-    if (quest.selected) {
-      butt.innerHTML = "&#9733;"
-    } else {
-      butt.innerHTML = "&#9734;"
-    }
-
-    row.appendChild(butt)
+    let butt = createEle("label",
+      {
+        class: "quest-select",
+        id: i + "button",
+        onclick: function() {selectQuest(this.id[0])},
+        innerHTML: quest.selected ? "&#9733;" : "&#9734;"
+      },
+      {
+        cursor: "pointer",
+        color: quest.complete ? "lightgrey" : "white"
+      }
+    )
 
     // create quest text
-    let node = document.createElement("input")
-    node.setAttribute("type", "text")
-    node.setAttribute("value", quest.title)
-    node.setAttribute("id", i + "input")
-    node.setAttribute("onchange", "updateQuestTitle(this);")
-    node.setAttribute("autocomplete", false)
-    //node.style.width = "100%"
+    let label = createEle("input",
+      {
+        type: "text",
+        value: quest.title,
+        id: i + "input",
+        onchange: function() {updateQuestTitle(this)},
+        autocomplete: false
+      },
+      {
+        fontWeight: quest.selected ? "bold" : "normal",
+        color: quest.complete ? "lightgrey" : "white"
+      }
+    )
 
+    let removeQ = createEle("label",
+      {
+        id: i + "removeQuest",
+        onclick: function() {removeQuest(this.id[0])},
+        textContent: "-"
+      },
+      {}
+    )
 
-    if (quest.selected) {
-      node.style.fontWeight = "bold";
-    } else {
-      node.style.fontWeight = "normal";
-    }
-
-    if (quest.complete) {
-      node.style.color = "lightgrey";
-    } else {
-      node.style.color = "white";
-    }
-
-    row.appendChild(node)
-
-    let removeQuest = document.createElement("label")
-    removeQuest.setAttribute("id", i + "removeQuest")
-    removeQuest.setAttribute("onclick", "removeQuest(this.id[0])")
-    removeQuest.textContent = "-"
-
-    row.appendChild(removeQuest)
-
+    let row = createRow([butt, label, removeQ])
+    questList.appendChild(row)
 
 }
 
 function drawTasks(quest, taskList) {
-  if (quest.selected) {
-      for (let i in quest.tasks) {
-        let task = quest.tasks[i]
 
-        // make a row for the task
-        let rowTask = createRow()
+    for (let i in quest.tasks) {
+      let task = quest.tasks[i]
 
-        // make a bullet
-        let bullet = document.createElement("label")
-        bullet.setAttribute("id", i + "bullet")
-        if (quest.tasks[i].complete[0]) {
-          bullet.innerHTML = "&#9746;"
-        } else {
-          bullet.innerHTML = "&#9744;"
+      // make a bullet
+      let bullet = createEle("label",
+        {
+          id: i + "bullet",
+          innerHTML: quest.tasks[i].complete[0] ? "&#9746;" : "&#9744;",
+          onclick: function() {updateTaskComplete(this.id)}
+        },
+        {}
+      )
+
+      // make the input node
+      let input = createEle("input",
+        {
+          type: "text",
+          id: i + "listItem",
+          onchange: function() {updateTaskName(this)},
+          autocomplete: false,
+          value: task.name[0]
+        },
+        {
+          width: "75%"
         }
-        bullet.setAttribute("onclick", "updateTaskComplete(this.id)")
+      )
 
-        // make the input node
-        let node = document.createElement("input")
-        node.setAttribute("type", "text")
-        node.setAttribute("id", i + "listItem")
-        node.setAttribute("onchange", "updateTaskName(this)")
-        node.setAttribute("autocomplete", false)
-        node.value = task.name[0]
-        node.style.width = "75%"
+      // make add subtask button
+      let addSub = createEle("label",
+        {
+          id: i + "addSub",
+          onclick: function() {addSubTask(this.id)},
+          textContent: "+"
+        },
+        {}
+      )
 
-        // make add subtask button
-        let addSub = document.createElement("label")
-        addSub.setAttribute("id", i + "addSub")
-        addSub.setAttribute("onclick", "addSubTask(this.id);")
-        addSub.textContent = "+"
+      let removeT = createEle("label",
+        {
+          id: i + "removeTask",
+          onclick: function() {removeTask(this.id)},
+          textContent: "-"
+        },
+        {}
+      )
 
-        let removeTask = document.createElement("label")
-        removeTask.setAttribute("id", i + "removeTask")
-        removeTask.setAttribute("onclick", "removeTask(this.id);")
-        removeTask.textContent = "-"
+      // append elements to row
+      // make a row for the task
+      let rowTask = createRow([bullet, input, addSub, removeT])
 
-        // append elements to row
-        rowTask.appendChild(bullet)
-        rowTask.appendChild(node)
-        rowTask.appendChild(addSub)
-        rowTask.appendChild(removeTask)
+      if (task.name.length > 1) {
 
-        if (task.name.length > 1) {
+        for (let j in task.name) {
+          let sub = task.name[j]
+          if (sub != task.name[0]) {
 
-          for (let j in task.name) {
-            let sub = task.name[j]
-            if (sub != task.name[0]) {
-              // make the row
-              row = document.createElement("div")
-              //row.setAttribute("class", "row")
+            // make some space
+            let space = createEle("label",
+              {innerHTML: "&nbsp;&nbsp;&nbsp;"},
+              {}
+            )
 
-              // make some space
-              let space = document.createElement("label")
-              space.innerHTML = "&nbsp;&nbsp;&nbsp;"
-
-              // make a bullet
-              bullet = document.createElement("label")
-              //let bulletIndex = +i + +j
-              bullet.setAttribute("id", i + j + "bullet")
-              bullet.setAttribute("onclick", "updateTaskComplete(this.id);")
-              // to get task on list, first letter and second letter as index
-              if (task.complete[j]) {
-                bullet.innerHTML = "&#9746;"
-              } else {
-                bullet.innerHTML = "&#9744;"
+            // make a bullet
+            let subBullet = createEle("label",
+              {
+                id: i + j + "bullet",
+                onclick: function() {updateTaskComplete(this.id)},
+                innerHTML: task.complete[j] ? "&#9746;" : "&#9744;"
+              },
+              {
+                marginLeft: "32px"
               }
+            )
 
-              bullet.style.marginLeft = "32px"
 
+            let li = createEle("input",
+              {
+                type: "text",
+                id: i + j + "listSub",
+                onchange: function() {updateTaskName(this)},
+                value: sub
+              },
+              {
+                width: "224px"
+              }
+            )
 
-              let li = document.createElement("input")
-              li.setAttribute("type", "text")
-              li.setAttribute("id", i + j + "listSub")
-              li.setAttribute("onchange", "updateTaskName(this)")
-              li.value = sub
-              li.style.width = "224px"
+            let removeSub = createEle("label",
+              {
+                id: i + j + "removeTask",
+                onclick: function() {
+                  removeTask(this.id);
+                  populate(adventures.quests[selectedAdventure])
+                },
+                textContent: "-"
+              },
+              {}
+            )
 
-              let removeSub = document.createElement("label")
-              removeSub.setAttribute("id", i + j + "removeTask")
-              removeSub.setAttribute("onclick", "removeTask(this.id);populate(adventures.quests[selectedAdventure])")
-              removeSub.textContent = "-"
-
-              row.appendChild(bullet)
-              row.appendChild(li)
-              row.appendChild(removeSub)
-
-              rowTask.appendChild(row);
-            }
+            let subRow = createRow([subBullet, li, removeSub])
+            rowTask.appendChild(subRow);
           }
-
         }
-
-        taskList.appendChild(rowTask)
 
       }
 
-      // reward message
-      let rewardP = document.getElementById("rewardP")
-      rewardP.textContent = "Reward:"
-      rewardP.style.width = "56px"
-      rewardP.style.fontWeight = "normal"
-      rewardP.style.textDecoration = "underline"
+      taskList.appendChild(rowTask)
 
-      // reward content
-      let reward = document.getElementById("rewardInput")
-      reward.setAttribute("type", "text")
-      reward.setAttribute("value", quest.reward)
-      reward.setAttribute("autocomplete", "off")
-      reward.setAttribute("onchange", "let quests = adventures.quests[selectedAdventure];let selected = quests.map(d => d.selected).indexOf(true);quests[selected].reward = this.value")
-
-      reward.style.width = "80%"
-
-      row = document.getElementById("reward")
-      row.setAttribute("class", "row")
-
-      row.appendChild(rewardP)
-      row.appendChild(reward)
-      
     }
+
+    // reward message
+    let rewardP = document.getElementById("rewardP")
+    rewardP.textContent = "Reward:"
+    rewardP.style.width = "56px"
+    rewardP.style.fontWeight = "normal"
+    rewardP.style.textDecoration = "underline"
+
+    // reward content
+    let reward = document.getElementById("rewardInput")
+    reward.setAttribute("type", "text")
+    reward.setAttribute("value", quest.reward)
+    reward.setAttribute("autocomplete", "off")
+    reward.setAttribute("onchange", "updateReward(this.value)")
+
+    reward.style.width = "80%"
+
+    row = document.getElementById("reward")
+    row.setAttribute("class", "row")
+
+    row.appendChild(rewardP)
+    row.appendChild(reward)
+
+
 }
 
 function focusNewElement(elements, append) {
@@ -259,5 +265,29 @@ function focusNewElement(elements, append) {
 
   document.getElementById(id).focus()
   document.getElementById(id).select()
+
+}
+
+function createEle(tag, attr, style) {
+
+  let ele = document.createElement(tag)
+
+  let attrNames = Object.keys(attr)
+  let attrValues = Object.values(attr)
+  for (let i in attrNames) {
+    let name = attrNames[i]
+    let value = attrValues[i]
+    ele[name] = value
+  }
+
+  let styleNames = Object.keys(style)
+  let styleValues = Object.values(style)
+  for (let i in styleNames) {
+    let name = styleNames[i]
+    let value = styleValues[i]
+    ele.style[name] = value
+  }
+
+  return(ele)
 
 }
