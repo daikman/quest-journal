@@ -43,7 +43,8 @@ function fillQuestSelect(quest, i, ele) {
     {
       textContent: quest.title,
       id: i + "selectQuest",
-      onclick: function() {selectQuest(this.id[0])}
+      onclick: function() {selectQuest(this.id[0])},
+      class: "quest-option"
     },
     {}
   )
@@ -60,7 +61,7 @@ function fillQuestSelect(quest, i, ele) {
 function makeSelection(ind) {
 
   // set all quests.selected to false
-  for (quest of adventures.quests[selectedAdventure]) {
+  for (let quest of adventures.quests[selectedAdventure]) {
     quest.selected = false
   }
   // set selected quest.selected to true
@@ -99,7 +100,8 @@ function drawQuest(quest, i, questList) {
         value: quest.title,
         id: i + "input",
         onchange: function() {updateQuestTitle(this)},
-        autocomplete: false
+        autocomplete: false,
+        class: "quest-input"
       },
       {
         fontWeight: quest.selected ? "bold" : "normal",
@@ -111,7 +113,8 @@ function drawQuest(quest, i, questList) {
       {
         id: i + "removeQuest",
         onclick: function() {removeQuest(this.id[0])},
-        textContent: "-"
+        textContent: "-",
+        class: "quest-remove"
       },
       {}
     )
@@ -131,7 +134,8 @@ function drawTasks(quest, taskList) {
         {
           id: i + "bullet",
           innerHTML: quest.tasks[i].complete[0] ? "&#9746;" : "&#9744;",
-          onclick: function() {updateTaskComplete(this.id)}
+          onclick: function() {updateTaskComplete(this.id)},
+          class: "task-complete"
         },
         {}
       )
@@ -143,7 +147,8 @@ function drawTasks(quest, taskList) {
           id: i + "listItem",
           onchange: function() {updateTaskName(this)},
           autocomplete: false,
-          value: task.name[0]
+          value: task.name[0],
+          class: "task-input"
         },
         {
           width: "75%"
@@ -155,7 +160,8 @@ function drawTasks(quest, taskList) {
         {
           id: i + "addSub",
           onclick: function() {addSubTask(this.id)},
-          textContent: "+"
+          textContent: "+",
+          class: "add-sub-task"
         },
         {}
       )
@@ -164,7 +170,8 @@ function drawTasks(quest, taskList) {
         {
           id: i + "removeTask",
           onclick: function() {removeTask(this.id)},
-          textContent: "-"
+          textContent: "-",
+          class: "remove-task"
         },
         {}
       )
@@ -181,7 +188,7 @@ function drawTasks(quest, taskList) {
 
             // make some space
             let space = createEle("label",
-              {innerHTML: "&nbsp;&nbsp;&nbsp;"},
+              {innerHTML: "&nbsp;&nbsp;&nbsp;", class: "sub-space"},
               {}
             )
 
@@ -190,7 +197,8 @@ function drawTasks(quest, taskList) {
               {
                 id: i + j + "bullet",
                 onclick: function() {updateTaskComplete(this.id)},
-                innerHTML: task.complete[j] ? "&#9746;" : "&#9744;"
+                innerHTML: task.complete[j] ? "&#9746;" : "&#9744;",
+                class: "sub-bullet"
               },
               {
                 marginLeft: "32px"
@@ -203,7 +211,8 @@ function drawTasks(quest, taskList) {
                 type: "text",
                 id: i + j + "listSub",
                 onchange: function() {updateTaskName(this)},
-                value: sub
+                value: sub,
+                class: "sub-input"
               },
               {
                 width: "224px"
@@ -217,7 +226,8 @@ function drawTasks(quest, taskList) {
                   removeTask(this.id);
                   populate(adventures.quests[selectedAdventure])
                 },
-                textContent: "-"
+                textContent: "-",
+                class: "remove-sub"
               },
               {}
             )
