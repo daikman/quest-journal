@@ -11,7 +11,7 @@ function populate() {
     document.createElement("UL")
   )
   let taskList = $("#task-list")[0]
-  let drop = $("#quest-drop")[0].getElementsByTagName("select")[0]
+  let drop = $("#quest-drop select")[0]
 
   // if no quest selected, makeSelection(quests.length-1)
   let selections = quests.map(d => d.selected)
