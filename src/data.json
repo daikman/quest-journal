@@ -1,0 +1,19 @@
+{
+    "Making a house": {
+      "quests": [
+        {"name": "get wood", "tasks": [
+          {"name": "Hello", "complete": false, "subs": []},
+          {"name": "Doop", "complete": false, "subs": [
+            {"name": "ding", "complete": true},
+            {"name": "dong", "complete": false}
+          ]}
+        ]},
+        {"name": "build house", "tasks": [
+          {"name": "Doop", "complete": false, "subs": [
+            {"name": "ding", "complete": true},
+            {"name": "dong", "complete": false}
+          ]}
+        ]}
+      ]
+    }
+  }
