@@ -1,0 +1,28 @@
+{{#each tasks}}
+    <div class="task">
+        <p contenteditable="true" role="textbox" class="in-out">{{this.name}}</p>
+        
+        <p></p>
+
+        <p class="clickable" role="button" onclick="console.log({{{this.index}}})">+</p>
+
+        <p></p>
+
+        <p class="clickable" role="button" onclick="journalRemoveTask({{{this.index}}})">-</p>
+        <div class="subtasks">
+            {{#each this.subs}}
+                <div class="subtask" id="t{{{this.i}}}s{{{this.j}}}">
+                    <p id="pt{{{this.i}}}s{{{this.j}}}" contenteditable="true" role="textbox" class="in-out">{{this.name}}</p>
+            
+                    <p></p>
+                    {{!-- remove 'button' --}}
+                    <p id="-t{{{this.i}}}s{{{this.j}}}" 
+                        class="clickable" role="button" 
+                        onclick="journalRemoveSub({{{this.i}}}, {{{this.j}}})">
+                        -
+                    </p>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+{{/each}}

@@ -1,0 +1,86 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    max-width: 60vw;
+    margin: auto;
+}
+
+.journal {
+    display: grid;
+    grid-template-columns: minmax(100px, 35%) minmax(200px, 65%);
+    height: 80vh
+}
+
+header {
+    height: 80px;
+    border-bottom: 1px solid;
+}
+
+header h1 {
+    margin-top: 0;
+}
+
+aside {
+    border-right: 1px solid;
+}
+
+main {
+
+}
+
+#quests {
+    padding: 8px;
+}
+
+.quest {
+    display: grid;
+    grid-template-columns: 10px 10px minmax(50%, 70%) 10px 10px;
+    color: lightgrey;
+    /* transition: all 200ms ease; */
+}
+
+.selected {
+    font-weight: bold;
+    color: white;
+}
+
+#tasks {
+    padding: 26px;
+}
+
+.task {
+    display: grid;
+    grid-template-columns: minmax(50%, 70%) 10px 10px 10px 10px;
+}
+
+.subtasks {
+    margin-left: 10%;
+}
+
+.subtask {
+    display: grid;
+    grid-template-columns: minmax(40%, 50%) 10px 10px;
+}
+
+.in-out {
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid;
+}
+
+.in-out:focus-visible {
+    outline: none;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+footer {
+    border-top: 1px solid;
+}
