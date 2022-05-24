@@ -10,7 +10,7 @@ templates['tasks'] = template({"1":function(container,depth0,helpers,partials,da
 
   return "    <div class=\"task\">\r\n        <p contenteditable=\"true\" role=\"textbox\" class=\"in-out\">"
     + container.escapeExpression(alias1((depth0 != null ? lookupProperty(depth0,"name") : depth0), depth0))
-    + "</p>\r\n        \r\n        <p></p>\r\n\r\n        <p class=\"clickable\" role=\"button\" onclick=\"console.log("
+    + "</p>\r\n        \r\n        <p></p>\r\n\r\n        <p class=\"clickable\" role=\"button\" onclick=\"journalAddSub("
     + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"index") : depth0), depth0)) != null ? stack1 : "")
     + ")\">+</p>\r\n\r\n        <p></p>\r\n\r\n        <p class=\"clickable\" role=\"button\" onclick=\"journalRemoveTask("
     + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"index") : depth0), depth0)) != null ? stack1 : "")

@@ -17,6 +17,47 @@ function journalRemoveTask(task) {
 
 }
 
+function journalRemoveQuest(quest) {
+
+  const filteredQuests = JOURNAL[0].quests.filter(d => d.i != quest)
+  const deletedQuests = JOURNAL[0].quests.filter(d => d.i == quest)
+
+  // update JOURNAL
+  JOURNAL[0].quests = filteredQuests
+
+  // add to DELETED
+  DELETED.push({
+    deleted: deletedQuests[0],
+    parent: JOURNAL[0].quests
+  })
+
+  // constrain SELECTED_INDEX to length of quests
+  if (SELECTED_INDEX > JOURNAL[0].quests.length - 1)
+    SELECTED_INDEX = JOURNAL[0].quests.length - 1
+
+  drawJournal()
+
+}
+
+function undoRemove(which) {
+  DELETED[which].parent.push(DELETED[which].deleted)
+
+  drawJournal()
+}
+
+function journalAddSub(task) {
+  const subTemplate = {
+    name: "",
+    complete: false,
+    i: JOURNAL[0].quests[SELECTED_INDEX].tasks[task].subs.length - 1
+  }
+
+  JOURNAL[0].quests[SELECTED_INDEX].tasks[task].subs.push(subTemplate)
+
+  drawJournal()
+
+}
+
 
 
 
@@ -24,11 +65,14 @@ function journalRemoveTask(task) {
 function drawJournal() {
   drawQuests()
   drawTasks()
+
+  const binTemplate = Handlebars.templates.bin
+  document.getElementById('bin').innerHTML = binTemplate({DELETED})
 }
 
 function drawQuests() {
   const quests = JOURNAL[SELECTED_JOURNAL].quests
-  const questTemplate = Handlebars.templates.quests;
+  const questTemplate = Handlebars.templates.quests
 
   // create quest list
   // add indexes
@@ -45,7 +89,7 @@ function drawTasks() {
   // using quests[SELECTED_QUESTS]
   const quests = JOURNAL[SELECTED_JOURNAL].quests
   const tasks = quests[SELECTED_INDEX].tasks
-  const taskTemplate = Handlebars.templates.tasks;
+  const taskTemplate = Handlebars.templates.tasks
 
     // add indexes to tasks
     for (let i in tasks) {

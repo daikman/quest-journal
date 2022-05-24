@@ -21,7 +21,9 @@ templates['quests'] = template({"1":function(container,depth0,helpers,partials,d
     + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"i") : depth0), depth0)) != null ? stack1 : "")
     + "; drawJournal();\" \r\n            class=\"clickable\" role=\"checkbox\">\r\n                ●\r\n            </p>\r\n            <p></p>\r\n            <p contenteditable=\"true\" role=\"textbox\" class=\"in-out\">"
     + container.escapeExpression(alias1((depth0 != null ? lookupProperty(depth0,"title") : depth0), depth0))
-    + "</p>\r\n            <p></p>\r\n            <p class=\"clickable\">-</p>\r\n        </div>\r\n";
+    + "</p>\r\n            <p></p>\r\n            <p class=\"clickable\" onclick=\"journalRemoveQuest("
+    + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"i") : depth0), depth0)) != null ? stack1 : "")
+    + ")\">-</p>\r\n        </div>\r\n";
 },"4":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
@@ -34,7 +36,9 @@ templates['quests'] = template({"1":function(container,depth0,helpers,partials,d
     + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"i") : depth0), depth0)) != null ? stack1 : "")
     + "; drawJournal();\" \r\n            class=\"clickable\" role=\"checkbox\">\r\n                ○\r\n            </p>\r\n            <p></p>\r\n            <p contenteditable=\"true\" role=\"textbox\" class=\"in-out\">"
     + container.escapeExpression(alias1((depth0 != null ? lookupProperty(depth0,"title") : depth0), depth0))
-    + "</p>\r\n            <p></p>\r\n            <p class=\"clickable\">-</p>\r\n        </div>\r\n";
+    + "</p>\r\n            <p></p>\r\n            <p class=\"clickable\" onclick=\"journalRemoveQuest("
+    + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"i") : depth0), depth0)) != null ? stack1 : "")
+    + ")\">-</p>\r\n        </div>\r\n";
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
