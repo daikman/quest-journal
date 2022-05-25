@@ -1,6 +1,18 @@
-<div>
-    🗑️
+<h2>Deleted Items</h2>
+{{#if DELETED.length}}
     {{#each DELETED}}
-        <p>{{this}}</p>
+        <div class="deleted-item">
+            {{#if this.deleted.title}}
+                <p>{{this.deleted.title}}</p>  
+            {{else}}
+                <p>{{this.deleted.name}}</p> 
+            {{/if}}
+            <p class="clickable" onclick="undoRemove({{{this.i}}})">✔️</p>
+        </div>
     {{/each}}
-</div>
+{{else}}
+    <p>No deleted items</p>
+{{/if}}
+
+
+

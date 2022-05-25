@@ -31,6 +31,11 @@ function journalRemoveQuest(quest) {
     parent: JOURNAL[0].quests
   })
 
+  // redefine DELETED indexes
+  for (let i in DELETED) {
+    DELETED[i].i = i
+  }
+
   // constrain SELECTED_INDEX to length of quests
   if (SELECTED_INDEX > JOURNAL[0].quests.length - 1)
     SELECTED_INDEX = JOURNAL[0].quests.length - 1
@@ -43,6 +48,11 @@ function undoRemove(which) {
   DELETED[which].parent.push(DELETED[which].deleted)
 
   DELETED.splice(which, 1)
+
+  // redefine DELETED indexes
+  for (let i in DELETED) {
+    DELETED[i].i = i
+  }
 
   drawJournal()
 }

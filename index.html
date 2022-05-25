@@ -22,7 +22,15 @@
     <div class="container">
       <header>
         <h1>Quest Journal</h1>
-        <div id="bin"></div>
+        <p onclick="{
+          const el = document.getElementById('bin')
+          if (el.style.height == '' | el.style.height == '0px') {
+              el.style.height = '100%'
+          } else {
+              el.style.height = '0px'
+          }
+        }">🗑️</p>
+        <div id="bin" class="collapsed"></div>
       </header>
       <div class="journal" oninput="scrapeQuest();">
         <aside>
