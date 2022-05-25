@@ -16,20 +16,16 @@
   <script src="./hb-compiled/tasks.js"></script>
   <script src="./hb-compiled/bin.js"></script>
   <script src="./js/questFunctions.js"></script>
+  <script src="./js/domFunctions.js"></script>
   <script src="./js/initilize.js" defer></script>
 </head>
   <body>
     <div class="container">
       <header>
         <h1>Quest Journal</h1>
-        <p onclick="{
-          const el = document.getElementById('bin')
-          if (el.style.height == '' | el.style.height == '0px') {
-              el.style.height = '100%'
-          } else {
-              el.style.height = '0px'
-          }
-        }">🗑️</p>
+        <div id="bin-button">
+          <p role="button" class="clickable" onclick="toggleBin()">🗑️<sup></sup></p>
+        </div>
         <div id="bin" class="collapsed"></div>
       </header>
       <div class="journal" oninput="scrapeQuest();">

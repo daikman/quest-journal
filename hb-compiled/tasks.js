@@ -15,7 +15,7 @@ templates['tasks'] = template({"1":function(container,depth0,helpers,partials,da
     + ")\">+</p>\r\n\r\n        <p></p>\r\n\r\n        <p class=\"clickable\" role=\"button\" onclick=\"journalRemoveTask("
     + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"index") : depth0), depth0)) != null ? stack1 : "")
     + ")\">-</p>\r\n        <div class=\"subtasks\">\r\n"
-    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"subs") : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":13,"column":12},"end":{"line":25,"column":21}}})) != null ? stack1 : "")
+    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"subs") : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":14,"column":12},"end":{"line":26,"column":21}}})) != null ? stack1 : "")
     + "        </div>\r\n    </div>\r\n";
 },"2":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, lookupProperty = container.lookupProperty || function(parent, propertyName) {
@@ -52,6 +52,7 @@ templates['tasks'] = template({"1":function(container,depth0,helpers,partials,da
         return undefined
     };
 
-  return ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"tasks") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":0},"end":{"line":28,"column":9}}})) != null ? stack1 : "");
+  return "<h2>Tasks</h2>\r\n"
+    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"tasks") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":2,"column":0},"end":{"line":29,"column":9}}})) != null ? stack1 : "");
 },"useData":true});
 })();

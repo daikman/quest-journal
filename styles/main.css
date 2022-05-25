@@ -19,6 +19,8 @@ body {
 header {
     height: 80px;
     border-bottom: 1px solid;
+    display: grid;
+    grid-template-columns: 80% 20%;
 }
 
 header h1 {
@@ -51,6 +53,7 @@ main {
 
 #tasks {
     padding: 26px;
+    padding-top: 8px;
 }
 
 .task {
@@ -77,10 +80,6 @@ main {
     outline: none;
 }
 
-.clickable {
-    cursor: pointer;
-}
-
 #bin {
     border-left: solid;
     background-color: black;
@@ -94,6 +93,23 @@ main {
 #bin .deleted-item {
     display: grid;
     grid-template-columns: minmax(100px, 35%) minmax(200px, 65%);
+}
+
+#bin-button {
+    display: grid;
+    place-items: center;
+}
+
+#bin-button p {
+    font-weight: bold;
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.clickable {
+    cursor: pointer;
 }
 
 .collapsed {
