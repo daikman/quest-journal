@@ -42,6 +42,8 @@ function journalRemoveQuest(quest) {
 function undoRemove(which) {
   DELETED[which].parent.push(DELETED[which].deleted)
 
+  DELETED.splice(which, 1)
+
   drawJournal()
 }
 
