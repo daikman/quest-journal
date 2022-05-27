@@ -2,7 +2,16 @@
 function journalRemoveSub(task, sub) {
 
   const filteredSubs = JOURNAL[0].quests[SELECTED_INDEX].tasks[task].subs.filter(d => d.j != sub)
+  const deletedSubs = JOURNAL[0].quests[SELECTED_INDEX].tasks[task].subs.filter(d => d.j == sub)
+
+  // update journal
   JOURNAL[0].quests[SELECTED_INDEX].tasks[task].subs = filteredSubs
+
+  updateDeleted("add", {
+    deleted: deletedSubs[0],
+    parent: JOURNAL[0].quests[SELECTED_INDEX].tasks[task],
+    type: "sub"
+  })
   
   drawJournal()
 
@@ -19,7 +28,7 @@ function journalRemoveTask(task) {
   // update deleted
   updateDeleted("add", {
     deleted: deletedTasks[0],
-    parent: JOURNAL[0].quests[SELECTED_INDEX].tasks,
+    parent: JOURNAL[0].quests[SELECTED_INDEX],
     type: "task"
   })
 
@@ -35,7 +44,14 @@ function updateDeleted(method, what) {
 
   // remove index 'what' from DELETED if method == "remove"
   if (method == "remove") {
-    DELETED[what].parent.push(DELETED[what].deleted)
+    const type = DELETED[what].type
+    if (type == "sub") {
+      DELETED[what].parent.subs.push(DELETED[what].deleted)
+    } else if (type == "task") {
+      DELETED[what].parent.tasks.push(DELETED[what].deleted)
+    } else {
+      DELETED[what].parent.quests.push(DELETED[what].deleted)
+    }
     DELETED.splice(what, 1) 
   }
 
@@ -56,7 +72,7 @@ function journalRemoveQuest(quest) {
 
   updateDeleted("add", {
     deleted: deletedQuests[0],
-    parent: JOURNAL[0].quests,
+    parent: JOURNAL[0],
     type: "quest"
   })
 
@@ -69,6 +85,8 @@ function journalRemoveQuest(quest) {
 }
 
 function undoRemove(which) {
+
+  if (DELETED.length == 0) return
 
   updateDeleted("remove", which)
 
@@ -87,6 +105,27 @@ function journalAddSub(task) {
 
   drawJournal()
 
+}
+
+function journalAddQuest() {
+  JOURNAL[0].quests.push({
+    reward: "reward",
+    selected: false,
+    tasks: [],
+    title: "Quest"
+  })
+
+  drawJournal()
+}
+
+function journalAddTask() {
+  JOURNAL[0].quests[SELECTED_INDEX].tasks.push({
+    complete: false,
+    name: "Task",
+    subs: []
+  })
+
+  drawJournal()
 }
 
 function scrapeQuest() {

@@ -10,12 +10,12 @@ templates['tasks'] = template({"1":function(container,depth0,helpers,partials,da
 
   return "    <div class=\"task\">\r\n        <p contenteditable=\"true\" role=\"textbox\" class=\"in-out\">"
     + container.escapeExpression(alias1((depth0 != null ? lookupProperty(depth0,"name") : depth0), depth0))
-    + "</p>\r\n        \r\n        <p></p>\r\n\r\n        <p class=\"clickable\" role=\"button\" onclick=\"journalAddSub("
+    + "</p>   \r\n        <p></p>\r\n        <p class=\"clickable\" role=\"button\" onclick=\"journalAddSub("
     + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"index") : depth0), depth0)) != null ? stack1 : "")
-    + ")\">+</p>\r\n\r\n        <p></p>\r\n\r\n        <p class=\"clickable\" role=\"button\" onclick=\"journalRemoveTask("
+    + ")\">+</p>\r\n        <p></p>\r\n        <p class=\"clickable\" role=\"button\" onclick=\"journalRemoveTask("
     + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"index") : depth0), depth0)) != null ? stack1 : "")
     + ")\">-</p>\r\n        <div class=\"subtasks\">\r\n"
-    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"subs") : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":14,"column":12},"end":{"line":26,"column":21}}})) != null ? stack1 : "")
+    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"subs") : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":13,"column":12},"end":{"line":22,"column":21}}})) != null ? stack1 : "")
     + "        </div>\r\n    </div>\r\n";
 },"2":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, lookupProperty = container.lookupProperty || function(parent, propertyName) {
@@ -25,21 +25,9 @@ templates['tasks'] = template({"1":function(container,depth0,helpers,partials,da
         return undefined
     };
 
-  return "                <div class=\"subtask\" id=\"t"
-    + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"i") : depth0), depth0)) != null ? stack1 : "")
-    + "s"
-    + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"j") : depth0), depth0)) != null ? stack1 : "")
-    + "\">\r\n                    <p id=\"pt"
-    + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"i") : depth0), depth0)) != null ? stack1 : "")
-    + "s"
-    + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"j") : depth0), depth0)) != null ? stack1 : "")
-    + "\" contenteditable=\"true\" role=\"textbox\" class=\"in-out\">"
+  return "                <div class=\"subtask\">\r\n                    <p contenteditable=\"true\" role=\"textbox\" class=\"in-out\">"
     + container.escapeExpression(alias1((depth0 != null ? lookupProperty(depth0,"name") : depth0), depth0))
-    + "</p>\r\n            \r\n                    <p></p>\r\n                    <p id=\"-t"
-    + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"i") : depth0), depth0)) != null ? stack1 : "")
-    + "s"
-    + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"j") : depth0), depth0)) != null ? stack1 : "")
-    + "\" \r\n                        class=\"clickable\" role=\"button\" \r\n                        onclick=\"journalRemoveSub("
+    + "</p>\r\n                    <p></p>\r\n                    <p class=\"clickable\" role=\"button\" \r\n                    onclick=\"journalRemoveSub("
     + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"i") : depth0), depth0)) != null ? stack1 : "")
     + ", "
     + ((stack1 = alias1((depth0 != null ? lookupProperty(depth0,"j") : depth0), depth0)) != null ? stack1 : "")
@@ -52,7 +40,7 @@ templates['tasks'] = template({"1":function(container,depth0,helpers,partials,da
         return undefined
     };
 
-  return "<h2>Tasks</h2>\r\n"
-    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"tasks") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":2,"column":0},"end":{"line":29,"column":9}}})) != null ? stack1 : "");
+  return "<div class=\"section-title\">\r\n    <h2>Tasks</h2>\r\n    <p class=\"clickable\" role=\"button\" onclick=\"journalAddTask()\">+</p>\r\n</div>\r\n"
+    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"tasks") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":5,"column":0},"end":{"line":25,"column":9}}})) != null ? stack1 : "");
 },"useData":true});
 })();

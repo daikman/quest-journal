@@ -1,25 +1,21 @@
-<h2>Tasks</h2>
+<div class="section-title">
+    <h2>Tasks</h2>
+    <p class="clickable" role="button" onclick="journalAddTask()">+</p>
+</div>
 {{#each tasks}}
     <div class="task">
-        <p contenteditable="true" role="textbox" class="in-out">{{this.name}}</p>
-        
+        <p contenteditable="true" role="textbox" class="in-out">{{this.name}}</p>   
         <p></p>
-
         <p class="clickable" role="button" onclick="journalAddSub({{{this.index}}})">+</p>
-
         <p></p>
-
         <p class="clickable" role="button" onclick="journalRemoveTask({{{this.index}}})">-</p>
         <div class="subtasks">
             {{#each this.subs}}
-                <div class="subtask" id="t{{{this.i}}}s{{{this.j}}}">
-                    <p id="pt{{{this.i}}}s{{{this.j}}}" contenteditable="true" role="textbox" class="in-out">{{this.name}}</p>
-            
+                <div class="subtask">
+                    <p contenteditable="true" role="textbox" class="in-out">{{this.name}}</p>
                     <p></p>
-                    {{!-- remove 'button' --}}
-                    <p id="-t{{{this.i}}}s{{{this.j}}}" 
-                        class="clickable" role="button" 
-                        onclick="journalRemoveSub({{{this.i}}}, {{{this.j}}})">
+                    <p class="clickable" role="button" 
+                    onclick="journalRemoveSub({{{this.i}}}, {{{this.j}}})">
                         -
                     </p>
                 </div>

@@ -1,4 +1,7 @@
 function drawJournal() {
+
+  // contrain SELECTED_INDEX
+  if (SELECTED_INDEX < 0) SELECTED_INDEX = 0
   drawQuests()
   drawTasks()
 
@@ -32,10 +35,8 @@ function drawQuests() {
 }
 
 function drawTasks() {
-  // create task list
-  // using quests[SELECTED_QUESTS]
   const quests = JOURNAL[SELECTED_JOURNAL].quests
-  const tasks = quests[SELECTED_INDEX].tasks
+  const tasks = quests[SELECTED_INDEX]?.tasks
   const taskTemplate = Handlebars.templates.tasks
 
     // add indexes to tasks
@@ -52,11 +53,17 @@ function drawTasks() {
 
 function toggleBin() {
   const el = document.getElementById('bin')
-  if (el.style.height == '' | el.style.height == '0px') {
-      el.style.height = '100%'
-  } else {
-      el.style.height = '0px'
-  }
+  // if (el.style.width == '' | el.style.width == '0px') {
+  //     el.style.width = '200px'
+  // } else {
+  //     el.style.width = '0px'
+  // }
+
+  if (el.style.right == '' | el.style.right == '-210px') {
+    el.style.right = '0px'
+} else {
+    el.style.right = '-210px'
+}
 }
 
 function toggleSubs(index) {

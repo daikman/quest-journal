@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
 body {
     background-color: black;
     color: white;
+    font-family: 'Playfair Display', serif;
 }
 
 .container {
@@ -29,14 +32,23 @@ header h1 {
 
 aside {
     border-right: 1px solid;
+    height: 100%;
+    overflow-y: auto;
 }
 
 main {
-
+    height: 100%;
+    overflow-y: auto;
 }
 
 #quests {
     padding: 8px;
+}
+
+.section-title {
+    display: grid;
+    grid-template-columns: 100px 10px;
+    place-items: center;
 }
 
 .quest {
@@ -83,11 +95,13 @@ main {
 #bin {
     border-left: solid;
     background-color: black;
-    width: 200px;
+    height: 100%;
     z-index: 100;
     position: fixed;
-    right: 0;
+    right: -210px;
     top: 0;
+    transition: right 1s;
+    width: 200px;
 }
 
 #bin .deleted-item {
@@ -112,12 +126,26 @@ main {
     cursor: pointer;
 }
 
-.collapsed {
-    height: 0px;
-    transition: height 1s;
-    overflow: hidden;
-}
-
 footer {
     border-top: 1px solid;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
