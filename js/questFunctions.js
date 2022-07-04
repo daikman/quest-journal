@@ -1,80 +1,48 @@
 // DOM MANIPULATION AND SCRAPING
 function journalRemoveSub(task, sub) {
 
+  JOURNAL_HISTORY.push(structuredClone(JOURNAL))
+
   const filteredSubs = JOURNAL[0].quests[SELECTED_INDEX].tasks[task].subs.filter(d => d.j != sub)
-  const deletedSubs = JOURNAL[0].quests[SELECTED_INDEX].tasks[task].subs.filter(d => d.j == sub)
 
   // update journal
   JOURNAL[0].quests[SELECTED_INDEX].tasks[task].subs = filteredSubs
-
-  updateDeleted("add", {
-    deleted: deletedSubs[0],
-    parent: JOURNAL[0].quests[SELECTED_INDEX].tasks[task],
-    type: "sub"
-  })
   
   drawJournal()
 
 }
 
+function undo() {
+  if (JOURNAL_HISTORY.length == 0) {
+    alert("Nothing to undo")
+    return
+  }
+  JOURNAL = structuredClone(JOURNAL_HISTORY[JOURNAL_HISTORY.length - 1])
+  JOURNAL_HISTORY.splice(JOURNAL_HISTORY.length - 1, 1)
+  drawJournal()
+}
+
 function journalRemoveTask(task) {
 
+  JOURNAL_HISTORY.push(structuredClone(JOURNAL))
+
   const filteredTasks = JOURNAL[0].quests[SELECTED_INDEX].tasks.filter(d => d.index != task)
-  const deletedTasks = JOURNAL[0].quests[SELECTED_INDEX].tasks.filter(d => d.index == task)
 
   // update journal
   JOURNAL[0].quests[SELECTED_INDEX].tasks = filteredTasks
-
-  // update deleted
-  updateDeleted("add", {
-    deleted: deletedTasks[0],
-    parent: JOURNAL[0].quests[SELECTED_INDEX],
-    type: "task"
-  })
 
   drawJournal()
 
 }
 
-function updateDeleted(method, what) {
-
-  // add object 'what' to DELETED if method == "add"
-  if (method == "add")
-    DELETED.push(what)
-
-  // remove index 'what' from DELETED if method == "remove"
-  if (method == "remove") {
-    const type = DELETED[what].type
-    if (type == "sub") {
-      DELETED[what].parent.subs.push(DELETED[what].deleted)
-    } else if (type == "task") {
-      DELETED[what].parent.tasks.push(DELETED[what].deleted)
-    } else {
-      DELETED[what].parent.quests.push(DELETED[what].deleted)
-    }
-    DELETED.splice(what, 1) 
-  }
-
-  // redefine DELETED indexes
-  for (let i in DELETED) {
-    DELETED[i].i = i
-  }
-
-}
-
 function journalRemoveQuest(quest) {
 
+  JOURNAL_HISTORY.push(structuredClone(JOURNAL))
+
   const filteredQuests = JOURNAL[0].quests.filter(d => d.i != quest)
-  const deletedQuests = JOURNAL[0].quests.filter(d => d.i == quest)
 
   // update JOURNAL
   JOURNAL[0].quests = filteredQuests
-
-  updateDeleted("add", {
-    deleted: deletedQuests[0],
-    parent: JOURNAL[0],
-    type: "quest"
-  })
 
   // constrain SELECTED_INDEX to length of quests
   if (SELECTED_INDEX > JOURNAL[0].quests.length - 1)
@@ -87,7 +55,6 @@ function journalRemoveQuest(quest) {
 function undoRemove(which) {
 
   if (DELETED.length == 0) return
-
   updateDeleted("remove", which)
 
   drawJournal()
@@ -95,6 +62,8 @@ function undoRemove(which) {
 }
 
 function journalAddSub(task) {
+  JOURNAL_HISTORY.push(structuredClone(JOURNAL))
+
   const subTemplate = {
     name: "",
     complete: false,
@@ -108,6 +77,7 @@ function journalAddSub(task) {
 }
 
 function journalAddQuest() {
+  JOURNAL_HISTORY.push(structuredClone(JOURNAL))
   JOURNAL[0].quests.push({
     reward: "reward",
     selected: false,
@@ -119,6 +89,7 @@ function journalAddQuest() {
 }
 
 function journalAddTask() {
+  JOURNAL_HISTORY.push(structuredClone(JOURNAL))
   JOURNAL[0].quests[SELECTED_INDEX].tasks.push({
     complete: false,
     name: "Task",
@@ -130,6 +101,7 @@ function journalAddTask() {
 
 function scrapeQuest() {
 
+    JOURNAL_HISTORY.push(structuredClone(JOURNAL))
     const quests = document.getElementById("quests").getElementsByClassName("quest")
     
     for (let i in quests) {

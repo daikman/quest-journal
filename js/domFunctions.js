@@ -12,11 +12,11 @@ function drawJournal() {
           .getElementsByTagName('sup')[0]
           .textContent = ''
 
-  // update deleted number
-  if (DELETED.length)
+  // update undo symbol
+  if (JOURNAL_HISTORY.length)
     document.getElementById('bin-button')
             .getElementsByTagName('sup')[0]
-            .textContent = DELETED.length
+            .textContent = "●"
     
 }
 
