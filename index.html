@@ -16,6 +16,7 @@
   <script src="./hb-compiled/tasks.js"></script>
   <script src="./hb-compiled/bin.js"></script>
   <script src="./hb-compiled/overlayLoading.js"></script>
+  <script src="./hb-compiled/journalData.js"></script>
   <script src="./js/questFunctions.js"></script>
   <script src="./js/domFunctions.js"></script>
   <script src="./js/initilize.js" defer></script>
@@ -24,8 +25,11 @@
     <div class="container">
       <div id="overlay" role="dialog"></div>
       <header>
-        <h1>Quest Journal</h1>
-        <div id="header-buttons">
+        <div id="header-title">
+          <h1>Quest Journal</h1>
+        </div>
+        <div id="header-extras">
+          <div id="journal-data"></div>
           <button id="bin-button" class="clickable" onclick="undo()">
             ↶
             <sup></sup>

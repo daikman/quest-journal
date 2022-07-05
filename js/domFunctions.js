@@ -5,6 +5,9 @@ function drawJournal() {
   drawQuests()
   drawTasks()
 
+  const journalDataTemplate = Handlebars.templates.journalData
+  document.getElementById('journal-data').innerHTML = journalDataTemplate({JOURNAL})
+
   const binTemplate = Handlebars.templates.bin
   document.getElementById('bin').innerHTML = binTemplate({DELETED})
 
