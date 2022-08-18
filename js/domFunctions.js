@@ -11,6 +11,9 @@ function drawJournal() {
   const binTemplate = Handlebars.templates.bin
   document.getElementById('bin').innerHTML = binTemplate({DELETED})
 
+  const loginTemplate = Handlebars.templates.loginModal
+  document.getElementById('login-modal').innerHTML = loginTemplate()
+
   document.getElementById('bin-button')
           .getElementsByTagName('sup')[0]
           .textContent = ''

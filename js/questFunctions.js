@@ -172,10 +172,9 @@ function saveLocal() {
 
 function saveJournal() {
   
-    let url = 'https://quest-journal-api.glitch.me/save_journal'
+    let url = 'https://quest-journal-api.glitch.me/save/'
     let bod = {}
-    bod.id = JOURNAL[0].id
-    bod.journal = JOURNAL[0]
+    bod.journals = JOURNAL
   
     let config = {
         method: 'POST',
@@ -193,7 +192,7 @@ function saveJournal() {
           return response.json();
       })
       .then(data => {
-          console.log(data)
+          //console.log(data)
       })
   
   }

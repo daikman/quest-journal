@@ -6,7 +6,7 @@ body {
     font-family: 'Playfair Display', serif;
 }
 
-#overlay {
+.overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -50,13 +50,14 @@ header h1 {
 
 button {
     background-color: transparent;
-    color: white;
+    color: lightgrey;
     border: 1px solid;
     border-radius: 8px;
+    cursor: pointer;
 }
 
 button:hover {
-    border-width: 2px;
+    color: white;
 }
 
 select {
@@ -119,7 +120,7 @@ main {
 
 .subtask {
     display: grid;
-    grid-template-columns: minmax(40%, 50%) 10px 10px;
+    grid-template-columns: 90% 1fr 1fr;
 }
 
 .in-out {
