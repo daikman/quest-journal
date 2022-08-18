@@ -8,18 +8,17 @@
   <link rel="stylesheet" href="styles/main.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <!-- not needed in production -->
-  <script src="./js/loadJSON.js"></script>
-  <!-- end of not needed -->
-  <script src="./hb-compiled/all-hb.js"></script>
-  <script src="./js/questFunctions.js"></script>
+  <script src="./hb-compiled/all-hb.js" defer></script>
+  <script src="./js/bundle.js" defer></script>
+  <!-- <script src="./js/questFunctions.js"></script>
   <script src="./js/domFunctions.js"></script>
-  <script src="./js/initilize.js" defer></script>
-  <script src="./js/userFunctions.js"></script>
+  <script src="./js/z-initilize.js" defer></script>
+  <script src="./js/userFunctions.js"></script> -->
 </head>
   <body>
     <div class="container">
       <div id="overlay" role="dialog"></div>
+      <div id="foreground"></div>
       <div id="login-modal" role="dialog"></div>
       <header>
         <div id="header-title">
@@ -44,10 +43,10 @@
       </div>
       <footer>
         <button onclick="saveJournal()">Save</button>
-        <button onclick="getQuests('david', false).then(data => {
+        <!-- <button onclick="getQuests('david', false).then(data => {
           JOURNAL = data
           drawJournal()
-        });">Load</button>
+        });">Load</button> -->
         <button onclick="location.reload()">Logout</button>
       </footer>
     </div>

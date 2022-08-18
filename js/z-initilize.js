@@ -13,17 +13,17 @@ let DELETED = []
     document.getElementById("overlay").innerHTML = overlayLoading({})
 }
 
-const defaultJournals = [
+JOURNAL = [
     {
-      "id": "default",
-      "title": "How to use this",
+      "id": null,
+      "title": "",
       "description": "",
       "quests": [
         {
-          "title": "Create new task",
+          "title": "",
           "tasks": [
             {
-              "name": "Press the '+' button ",
+              "name": "",
               "complete": false,
               "subs": [
                 { "name": "", "complete": false }
@@ -37,11 +37,6 @@ const defaultJournals = [
       ]
     }
   ]
+drawJournal()
 
-// get data from API
-getQuests("david", false).then(data => {
-    JOURNAL = data
-    drawJournal()
-    // end loading
-    document.getElementById("overlay").style.display = "none"
-});
+document.getElementById("overlay").style.display = "none"
