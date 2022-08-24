@@ -60,28 +60,8 @@ templates['bin'] = template({"1":function(container,depth0,helpers,partials,data
 },"useData":true});
 })();(function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
-templates['journalData'] = template({"1":function(container,depth0,helpers,partials,data) {
-    var lookupProperty = container.lookupProperty || function(parent, propertyName) {
-        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
-          return parent[propertyName];
-        }
-        return undefined
-    };
-
-  return "        <option>"
-    + container.escapeExpression(container.lambda((depth0 != null ? lookupProperty(depth0,"title") : depth0), depth0))
-    + "</option>\r\n";
-},"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
-        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
-          return parent[propertyName];
-        }
-        return undefined
-    };
-
-  return "<select>\r\n"
-    + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"JOURNAL") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":2,"column":4},"end":{"line":4,"column":13}}})) != null ? stack1 : "")
-    + "</select>";
+templates['journalData'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    return "";
 },"useData":true});
 })();(function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
@@ -142,7 +122,7 @@ templates['quests'] = template({"1":function(container,depth0,helpers,partials,d
         return undefined
     };
 
-  return "<div class=\"section-title\">\r\n    <h2>Quests</h2>\r\n    <p class=\"clickable\" role=\"button\" onclick=\"journalAddQuest()\">+</p>\r\n</div>\r\n"
+  return "<div class=\"section-title-quests\">\r\n    <h2>Quests</h2>\r\n    <p class=\"clickable\" role=\"button\" onclick=\"journalAddQuest()\">+</p>\r\n</div>\r\n"
     + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"quests") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":5,"column":0},"end":{"line":29,"column":9}}})) != null ? stack1 : "");
 },"useData":true});
 })();(function() {
@@ -187,7 +167,7 @@ templates['tasks'] = template({"1":function(container,depth0,helpers,partials,da
         return undefined
     };
 
-  return "<div class=\"section-title\">\r\n    <h2>Tasks</h2>\r\n    <p class=\"clickable\" role=\"button\" onclick=\"journalAddTask()\">+</p>\r\n</div>\r\n"
+  return "<div class=\"section-title-tasks\">\r\n    <h2>Tasks</h2>\r\n    <p class=\"clickable\" role=\"button\" onclick=\"journalAddTask()\">+</p>\r\n</div>\r\n"
     + ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"tasks") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":5,"column":0},"end":{"line":25,"column":9}}})) != null ? stack1 : "");
 },"useData":true});
 })();

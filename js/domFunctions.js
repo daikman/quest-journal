@@ -5,25 +5,9 @@ function drawJournal() {
   drawQuests()
   drawTasks()
 
-  const journalDataTemplate = Handlebars.templates.journalData
-  document.getElementById('journal-data').innerHTML = journalDataTemplate({JOURNAL})
-
-  const binTemplate = Handlebars.templates.bin
-  document.getElementById('bin').innerHTML = binTemplate({DELETED})
-
   const loginTemplate = Handlebars.templates.loginModal
   document.getElementById('login-modal').innerHTML = loginTemplate()
-
-  document.getElementById('bin-button')
-          .getElementsByTagName('sup')[0]
-          .textContent = ''
-
-  // update undo symbol
-  if (JOURNAL_HISTORY.length)
-    document.getElementById('bin-button')
-            .getElementsByTagName('sup')[0]
-            .textContent = "●"
-    
+  
 }
 
 function drawQuests() {

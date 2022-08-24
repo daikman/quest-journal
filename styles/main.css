@@ -4,16 +4,7 @@ body {
     background-color: black;
     color: white;
     font-family: 'Playfair Display', serif;
-}
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    background-color: black;
-    width: 100%;
-    height: 100%;
+    font-size: large;
 }
 
 .container {
@@ -21,6 +12,28 @@ body {
     grid-template-rows: auto 1fr auto;
     max-width: 60vw;
     margin: auto;
+}
+
+#foreground {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 11;
+    display: none;
+    cursor: progress;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+}
+
+#login-modal .overlay {
+    background-color: black;
 }
 
 .journal {
@@ -32,6 +45,7 @@ body {
 header {
     border-bottom: 1px solid;
     padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 header h1 {
@@ -81,9 +95,15 @@ main {
     padding: 8px;
 }
 
-.section-title {
+.section-title-quests {
     display: grid;
-    grid-template-columns: 100px 10px;
+    grid-template-columns: 70px 40px;
+    place-items: center;
+}
+
+.section-title-tasks {
+    display: grid;
+    grid-template-columns: 50px 45px;
     place-items: center;
 }
 
@@ -121,12 +141,21 @@ main {
 .subtask {
     display: grid;
     grid-template-columns: 90% 1fr 1fr;
+    font-size: smaller;
+}
+
+.subtask p {
+    border: none;
 }
 
 .in-out {
-    border: none;
-    background-color: transparent;
-    border-bottom: 1px solid;
+    /* border: none; */
+    /* background-color: transparent; */
+}
+
+.in-out:focus {
+    /* border-bottom: 1px dashed; */
+    font-weight: bold;
 }
 
 .in-out:focus-visible {

@@ -28,10 +28,16 @@ async function login() {
         })
     }
 
-    // attempt register
+    // loading blur
+    cloudUp()
+
+    // attempt login
     const response = await fetch(url, config)
       .then(res => res.json())
-      .then(data => {return data})
+      .then(data => {
+        clearUp()
+        return data
+    })
     
     if (response.success) {
         success(response.journals)
