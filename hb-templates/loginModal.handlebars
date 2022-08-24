@@ -1,0 +1,50 @@
+<div class="overlay" style="display: grid; place-items: center;">
+    <div style="max-height: 400px;">
+        <h1 style="margin-top: 0px">Quest Journal</h1>
+        <p>Greetings adventurer, I don't recognise you.</p>
+        <p>Have we met before?</p>
+        <div style="display: grid; place-items: center">
+            <div>
+                <label for="choose-log">Yes</label>
+                <input type="checkbox" name="choose-log" id="choose-log" onchange="
+                   const el = document.getElementById('confirm-password')
+                   el.style.display = 'none'
+                   const other = document.getElementById('choose-reg')
+                   other.checked = !this.checked
+                   const button = document.getElementById('login-submit')
+                   button.textContent = 'Login'
+                " checked>
+                <label for="choose-reg">No</label>
+                <input type="checkbox" name="choose-reg" id="choose-reg" onchange="
+                   const el = document.getElementById('confirm-password')
+                   el.style.display = 'grid'
+                   const other = document.getElementById('choose-log')
+                   other.checked = !this.checked
+                   const button = document.getElementById('login-submit')
+                   button.textContent = 'Register'
+                ">
+            </div>
+            
+        </div>
+        <br>
+        <br>
+        <div style="display: grid; place-items: center;">
+            <div style="display: grid;">
+                <label for="user">Name: </label>
+                <input type="text" name="user" id="login-user">
+            </div>
+            <br>
+            <div style="display: grid;">
+                <label for="password">Password: </label>
+                <input type="password" name="password" id="login-password">
+            </div>
+            <div id="confirm-password" style="display: none;">
+                <br>
+                <label for="confirm">Confirm password: </label>
+                <input type="password" name="confirm" id="login-confirm">
+            </div>
+            <br>
+            <button type="submit" id="login-submit" onclick="auth(this.textContent)">Login</button>
+        </div>
+    </div>
+</div>

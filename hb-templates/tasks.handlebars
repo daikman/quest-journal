@@ -1,0 +1,25 @@
+<div class="section-title-tasks">
+    <h2>Tasks</h2>
+    <p class="clickable" role="button" onclick="journalAddTask()">+</p>
+</div>
+{{#each tasks}}
+    <div class="task">
+        <p contenteditable="true" role="textbox" class="in-out">{{this.name}}</p>   
+        <p></p>
+        <p class="clickable" role="button" onclick="journalAddSub({{{this.index}}})">+</p>
+        <p></p>
+        <p class="clickable" role="button" onclick="journalRemoveTask({{{this.index}}})">-</p>
+        <div class="subtasks">
+            {{#each this.subs}}
+                <div class="subtask">
+                    <p contenteditable="true" role="textbox" class="in-out">{{this.name}}</p>
+                    <p></p>
+                    <p class="clickable" role="button" 
+                    onclick="journalRemoveSub({{{this.i}}}, {{{this.j}}})">
+                        -
+                    </p>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+{{/each}}

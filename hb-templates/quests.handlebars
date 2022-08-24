@@ -1,0 +1,29 @@
+<div class="section-title-quests">
+    <h2>Quests</h2>
+    <p class="clickable" role="button" onclick="journalAddQuest()">+</p>
+</div>
+{{#each quests}}
+    {{#if this.selected}}
+        <div class="quest selected">
+            <p onclick="SELECTED_INDEX = {{{this.i}}}; drawJournal();" 
+            class="clickable" role="checkbox">
+                ●
+            </p>
+            <p></p>
+            <p contenteditable="true" role="textbox" class="in-out">{{this.title}}</p>
+            <p></p>
+            <p class="clickable" onclick="journalRemoveQuest({{{this.i}}})">-</p>
+        </div>
+    {{else}}
+        <div class="quest">
+            <p onclick="SELECTED_INDEX = {{{this.i}}}; drawJournal();" 
+            class="clickable" role="checkbox">
+                ○
+            </p>
+            <p></p>
+            <p contenteditable="true" role="textbox" class="in-out">{{this.title}}</p>
+            <p></p>
+            <p class="clickable" onclick="journalRemoveQuest({{{this.i}}})">-</p>
+        </div>
+    {{/if}}
+{{/each}}
