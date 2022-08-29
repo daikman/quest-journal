@@ -80,9 +80,13 @@ async function register() {
     }
 
     // attempt register
+    cloudUp()
     const response = await fetch(url, config)
       .then(res => res.json())
-      .then(data => {return data})
+      .then(data => {
+        clearUp()
+        return data
+      })
     
     if (response.success) {
         success(response.journals)
