@@ -1,7 +1,7 @@
 # Quest Journal
 A video game quest/mission menu for managing tasks. Use it [here](https://daikman.github.io/quest-journal/)!
 
-It uses a REST API I wrote with Node.js, that is hosted on [glitch](https://quest-journal-api.glitch.me/).
+It uses a REST API I wrote with Node.js, that is hosted [here](https://glitch.com/edit/#!/quest-journal-api), on [gltich](https://glitch.com/)
 
 # Development approach
 When I started this project, I had no experience using web-dev frameworks. I only knew how to write plain HTML, CSS and JavaScript. This is still reflected in the code! But I have refectored it a few times to make it easier to work with.
