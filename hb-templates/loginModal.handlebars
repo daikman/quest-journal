@@ -28,7 +28,7 @@
         </div>
         <br>
         <br>
-        <div style="display: grid; place-items: center;">
+        <form style="display: grid; place-items: center;" onsubmit="auth(); return false" method="">
             <div style="display: grid;">
                 <label for="user">Name: </label>
                 <input type="text" name="user" id="login-user">
@@ -44,7 +44,7 @@
                 <input type="password" name="confirm" id="login-confirm">
             </div>
             <br>
-            <button type="submit" id="login-submit" onclick="auth(this.textContent)">Login</button>
-        </div>
+            <button type="submit" id="login-submit">Login</button>
+        </form>
     </div>
 </div>

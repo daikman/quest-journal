@@ -1,4 +1,5 @@
-function auth(method) {
+function auth() {
+    const method = document.getElementById('login-submit').textContent
     if (method == "Login") login()
     if (method == "Register") register()
 }
