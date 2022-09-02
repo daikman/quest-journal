@@ -1,2 +1,2 @@
-./hb-compile.sh
-./js-compile.sh
+cd ./js
+cat *.js > bundle.js

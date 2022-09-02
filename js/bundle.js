@@ -1,18 +1,26 @@
+function applyHandles(filename, domId, data) {
+
+  fetch("../hb-templates/" + filename)
+    .then(res => res.text())
+    .then(text => {
+      const template = Handlebars.compile(text)
+      document.getElementById(domId).innerHTML = template(data)
+    })
+  
+}
+
 function drawJournal() {
 
   // contrain SELECTED_INDEX
   if (SELECTED_INDEX < 0) SELECTED_INDEX = 0
+  
   drawQuests()
   drawTasks()
-
-  const loginTemplate = Handlebars.templates.loginModal
-  document.getElementById('login-modal').innerHTML = loginTemplate()
   
 }
 
 function drawQuests() {
   const quests = JOURNAL[SELECTED_JOURNAL].quests
-  const questTemplate = Handlebars.templates.quests
 
   // create quest list
   // add indexes
@@ -20,14 +28,15 @@ function drawQuests() {
     quests[i].i = i
     quests[i].selected = i == SELECTED_INDEX
   }
-  document.getElementById('quests').innerHTML = questTemplate({quests})
+
+  applyHandles("quests.handlebars", "quests", { quests })
 
 }
 
 function drawTasks() {
   const quests = JOURNAL[SELECTED_JOURNAL].quests
   const tasks = quests[SELECTED_INDEX]?.tasks
-  const taskTemplate = Handlebars.templates.tasks
+  // const taskTemplate = Handlebars.templates.tasks
 
     // add indexes to tasks
     for (let i in tasks) {
@@ -38,37 +47,8 @@ function drawTasks() {
       }
     }
 
-    document.getElementById('tasks').innerHTML = taskTemplate({tasks})
-}
-
-function toggleBin() {
-  const el = document.getElementById('bin')
-  // if (el.style.width == '' | el.style.width == '0px') {
-  //     el.style.width = '200px'
-  // } else {
-  //     el.style.width = '0px'
-  // }
-
-  if (el.style.right == '' | el.style.right == '-210px') {
-    el.style.right = '0px'
-} else {
-    el.style.right = '-210px'
-}
-}
-
-function toggleSubs(index) {
-    console.log(index)
-    const currentHeight = document.getElementsByClassName("subtasks")[+index].style.height
-
-    if (currentHeight == "" | currentHeight == "0%") {
-        document.getElementsByClassName("subtasks")[+index].style.height = "100%"
-    } else {
-        document.getElementsByClassName("subtasks")[+index].style.height = "0%"
-    }
-
-    document.getElementsByClassName("subtasks")[+index]
-            .style.gridTemplateColumns = 'minmax(40%, 50%) 10px 10px'
-         
+    // document.getElementById('tasks').innerHTML = taskTemplate({tasks})
+    applyHandles("tasks.handlebars", "tasks", { tasks })
 }// p5 canvas that clouds over when loading and clears up when loaded
 // starts clouded and goes clear on page start
 
@@ -445,45 +425,14 @@ function success(journals) {
     // draw journals
     JOURNAL = journals
     drawJournal()
-}let JOURNAL
+}let JOURNAL = []
 let JOURNAL_HISTORY = []
 let SELECTED_INDEX = 0
 let SELECTED_JOURNAL = 0
-
+ 
 // array of objects that were deleted, along with where they were deleted from (i.e., parent object)
 let DELETED = []
 
-
-// begin loading
-{
-    const overlayLoading = Handlebars.templates.overlayLoading
-    document.getElementById("overlay").innerHTML = overlayLoading({})
-}
-
-JOURNAL = [
-    {
-      "id": null,
-      "title": "",
-      "description": "",
-      "quests": [
-        {
-          "title": "",
-          "tasks": [
-            {
-              "name": "",
-              "complete": false,
-              "subs": [
-                { "name": "", "complete": false }
-              ]
-            }
-          ],
-          "reward": "",
-          "i": "0",
-          "selected": true
-        }
-      ]
-    }
-  ]
-drawJournal()
+applyHandles("loginModal.handlebars", "login-modal", null)
 
 document.getElementById("overlay").style.display = "none"
