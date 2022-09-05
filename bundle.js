@@ -158,6 +158,11 @@ function journalRemoveTask(task) {
 
 function journalRemoveQuest(quest) {
 
+  if (JOURNAL[0].quests.length < 2) {
+    alert("Cannot delete only quest")
+    return
+  }
+
   JOURNAL_HISTORY.push(structuredClone(JOURNAL))
 
   const filteredQuests = JOURNAL[0].quests.filter(d => d.i != quest)
