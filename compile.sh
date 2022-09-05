@@ -1,2 +1,2 @@
 cd ./js
-cat *.js > bundle.js
+cat *.js > ../bundle.js
