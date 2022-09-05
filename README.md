@@ -1,7 +1,7 @@
 # Quest Journal
 A video game quest/mission menu for managing tasks. Use it [here](https://daikman.github.io/quest-journal/)!
 
-It uses a REST API I wrote with Node.js, that is hosted [here](https://glitch.com/edit/#!/quest-journal-api), on [gltich](https://glitch.com/).
+It uses a REST API I wrote with Node.js [here](https://github.com/daikman/quest-api), which is hosted on [gltich](https://glitch.com/). The API uses password hashing and stores user data in flat (hidden) JSON files.
 
 **Please do not use this app for anything serious or sensitive**. It has no way to recover your account, for example, if you forget your password. I also cannot vouch for the safety of any information you enter into the server.
 
