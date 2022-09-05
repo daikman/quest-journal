@@ -1,6 +1,6 @@
 function applyHandles(filename, domId, data) {
 
-  fetch("../hb-templates/" + filename)
+  fetch("./hb-templates/" + filename)
     .then(res => res.text())
     .then(text => {
       const template = Handlebars.compile(text)
