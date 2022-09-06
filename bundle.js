@@ -122,7 +122,7 @@ function windowResized() {
 }// DOM MANIPULATION AND SCRAPING
 function journalRemoveSub(task, sub) {
 
-  JOURNAL_HISTORY.push(structuredClone(JOURNAL))
+  JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
 
   const filteredSubs = JOURNAL[0].quests[SELECTED_INDEX].tasks[task].subs.filter(d => d.j != sub)
 
@@ -138,14 +138,14 @@ function undo() {
     alert("Nothing to undo")
     return
   }
-  JOURNAL = structuredClone(JOURNAL_HISTORY[JOURNAL_HISTORY.length - 1])
+  JOURNAL = JSON.parse(JSON.stringify(JOURNAL_HISTORY[JOURNAL_HISTORY.length - 1])))
   JOURNAL_HISTORY.splice(JOURNAL_HISTORY.length - 1, 1)
   drawJournal()
 }
 
 function journalRemoveTask(task) {
 
-  JOURNAL_HISTORY.push(structuredClone(JOURNAL))
+  JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
 
   const filteredTasks = JOURNAL[0].quests[SELECTED_INDEX].tasks.filter(d => d.index != task)
 
@@ -163,7 +163,9 @@ function journalRemoveQuest(quest) {
     return
   }
 
-  JOURNAL_HISTORY.push(structuredClone(JOURNAL))
+  JOURNAL_HISTORY.push(
+    JSON.parse(JSON.stringify(JOURNAL))
+  )
 
   const filteredQuests = JOURNAL[0].quests.filter(d => d.i != quest)
 
@@ -188,7 +190,7 @@ function undoRemove(which) {
 }
 
 function journalAddSub(task) {
-  JOURNAL_HISTORY.push(structuredClone(JOURNAL))
+  JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
 
   const subTemplate = {
     name: "",
@@ -203,7 +205,7 @@ function journalAddSub(task) {
 }
 
 function journalAddQuest() {
-  JOURNAL_HISTORY.push(structuredClone(JOURNAL))
+  JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
   JOURNAL[0].quests.push({
     reward: "reward",
     selected: false,
@@ -215,7 +217,7 @@ function journalAddQuest() {
 }
 
 function journalAddTask() {
-  JOURNAL_HISTORY.push(structuredClone(JOURNAL))
+  JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
   JOURNAL[0].quests[SELECTED_INDEX].tasks.push({
     complete: false,
     name: "Task",
@@ -227,7 +229,7 @@ function journalAddTask() {
 
 function scrapeQuest() {
 
-    JOURNAL_HISTORY.push(structuredClone(JOURNAL))
+    JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
     const quests = document.getElementById("quests").getElementsByClassName("quest")
     
     for (let i in quests) {
