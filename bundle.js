@@ -138,7 +138,7 @@ function undo() {
     alert("Nothing to undo")
     return
   }
-  JOURNAL = JSON.parse(JSON.stringify(JOURNAL_HISTORY[JOURNAL_HISTORY.length - 1])))
+  JOURNAL = JSON.parse(JSON.stringify(JOURNAL_HISTORY[JOURNAL_HISTORY.length - 1]))
   JOURNAL_HISTORY.splice(JOURNAL_HISTORY.length - 1, 1)
   drawJournal()
 }
