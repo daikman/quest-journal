@@ -177,7 +177,7 @@ function saveLocal() {
   // save json
 }
 
-function saveJournal(logout) {
+function saveJournal(logout, load = true) {
   
     let url = 'https://quest-journal-api.glitch.me/save/'
     let bod = {}
@@ -194,13 +194,13 @@ function saveJournal(logout) {
         )
     }
     
-    cloudUp()
+    if (load) cloudUp()
     fetch(url, config)
       .then(response => {
           return response.json();
       })
       .then(data => {
-          clearUp()
+          if (load) clearUp()
           if (logout) location.reload()
       })
   

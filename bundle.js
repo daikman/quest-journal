@@ -298,7 +298,7 @@ function saveLocal() {
   // save json
 }
 
-function saveJournal(logout) {
+function saveJournal(logout, load = true) {
   
     let url = 'https://quest-journal-api.glitch.me/save/'
     let bod = {}
@@ -315,13 +315,13 @@ function saveJournal(logout) {
         )
     }
     
-    cloudUp()
+    if (load) cloudUp()
     fetch(url, config)
       .then(response => {
           return response.json();
       })
       .then(data => {
-          clearUp()
+          if (load) clearUp()
           if (logout) location.reload()
       })
   
@@ -443,3 +443,10 @@ let DELETED = []
 applyHandles("loginModal.handlebars", "login-modal", null)
 
 document.getElementById("overlay").style.display = "none"
+
+// init auto-saving
+setInterval(() => {
+    if (JOURNAL.length == 0) return
+    saveJournal(false, false)
+    console.log("autosaved")
+}, 10000)
