@@ -1,10 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
 body {
-    background-color: black;
+    /* background-color: black;
+    background-color: rgba(0, 0, 0, 0.8); */
     color: white;
     font-family: 'Playfair Display', serif;
     font-size: large;
+}
+
+#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -10;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#background img {
+    object-fit: contain;
+}
+
+#background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: -9;
 }
 
 .container {
