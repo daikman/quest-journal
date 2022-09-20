@@ -81,7 +81,7 @@ body {
 .journal {
     display: grid;
     grid-template-columns: minmax(100px, 35%) minmax(200px, 65%);
-    height: 70vh
+    height: 70vh;
 }
 
 header {
@@ -135,6 +135,9 @@ main {
 
 #quests {
     padding: 8px;
+    /* white-space: nowrap;
+    overflow-x: hidden; */
+    overflow-x: hidden;
 }
 
 .section-title-quests {
@@ -221,6 +224,32 @@ main {
 
 footer {
     border-top: 1px solid;
+}
+
+.mobile {
+    display: none;
+}
+
+@media (max-width: 800px) {
+
+    .no-mobile {
+        display: none;
+    }
+
+    .mobile {
+        display: block;
+    }
+
+    .journal {
+        grid-template-columns: minmax(200px, 90%);
+        white-space: nowrap;
+    }
+
+    .container {
+        max-width: 90vw;
+        height: 90vh;
+    }
+    
 }
 
 /* SCROLLBAR */
