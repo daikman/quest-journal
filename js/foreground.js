@@ -36,7 +36,7 @@ function draw() {
     cloudness += change
     if (cloudness > max) cloudness = max
     if (cloudness == 0) {
-        document.getElementById('foreground').style.display = "none"
+        document.getElementById('foreground').style.display = "none"   
         return
     }
 }

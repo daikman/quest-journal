@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
 body {
-    /* background-color: black;
-    background-color: rgba(0, 0, 0, 0.8); */
     color: white;
     font-family: 'Playfair Display', serif;
     font-size: large;
@@ -47,6 +45,24 @@ body {
     z-index: 11;
     display: none;
     cursor: progress;
+}
+
+#foreground div {
+    /* display: grid;
+    place-items: center; */
+    width: 320px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+#foreground div p {
+    font-family: sans-serif;
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    margin: 25px;
+    text-align: center;
 }
 
 .overlay {
@@ -174,13 +190,7 @@ main {
     border: none;
 }
 
-.in-out {
-    /* border: none; */
-    /* background-color: transparent; */
-}
-
 .in-out:focus {
-    /* border-bottom: 1px dashed; */
     font-weight: bold;
 }
 
@@ -200,23 +210,10 @@ main {
     width: 200px;
 }
 
-#bin .deleted-item {
-    display: grid;
-    grid-template-columns: minmax(100px, 35%) minmax(200px, 65%);
-}
-
 #header-buttons {
     display: grid;
     place-items: center;
 }
-
-/* #bin-button p:hover {
-    border: 1px solid;
-    border-color: white;
-    border-radius: 8px;
-    padding: 4px;
-    padding-top: 1px;
-} */
 
 .clickable {
     cursor: pointer;
@@ -226,6 +223,7 @@ footer {
     border-top: 1px solid;
 }
 
+/* SCROLLBAR */
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
