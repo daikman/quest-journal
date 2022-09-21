@@ -51,7 +51,14 @@ function drawTasks() {
     applyHandles("tasks.handlebars", "tasks", { tasks })
 }
 
-function unsavedChanges() {
-  document.getElementById("save-button").style.fontWeight = "bold"
-  document.getElementById("save-button").style.borderWidth = "2px"
+function changesMade(saved) {
+
+  if (JOURNAL_HISTORY.length == 0 | saved) {
+    document.getElementById("save-button").style.fontWeight = "normal"
+    document.getElementById("save-button").style.borderWidth = "1px"
+  } else {
+    document.getElementById("save-button").style.fontWeight = "bold"
+    document.getElementById("save-button").style.borderWidth = "2px"
+  }
+ 
 }

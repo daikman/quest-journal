@@ -51,9 +51,16 @@ function drawTasks() {
     applyHandles("tasks.handlebars", "tasks", { tasks })
 }
 
-function unsavedChanges() {
-  document.getElementById("save-button").style.fontWeight = "bold"
-  document.getElementById("save-button").style.borderWidth = "2px"
+function changesMade(saved) {
+
+  if (JOURNAL_HISTORY.length == 0 | saved) {
+    document.getElementById("save-button").style.fontWeight = "normal"
+    document.getElementById("save-button").style.borderWidth = "1px"
+  } else {
+    document.getElementById("save-button").style.fontWeight = "bold"
+    document.getElementById("save-button").style.borderWidth = "2px"
+  }
+ 
 }// p5 canvas that clouds over when loading and clears up when loaded
 // starts clouded and goes clear on page start
 
@@ -129,12 +136,14 @@ function del(what, i, j) {
   if (what == "quest") removeQuest(i)
   if (what == "task") removeTask(i)
   if (what == "sub") removeSub(i, j)
+  changesMade()
 }
 
 function add(what, i) {
   if (what == "quest") addQuest()
   if (what == "task") addTask()
   if (what == "sub") addSub(i)
+  changesMade()
 }
 
 function removeSub(task, sub) {
@@ -247,10 +256,7 @@ function addTask() {
 function scrapeQuest() {
 
     JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
-    if (JOURNAL_HISTORY.length != 0) {
-      document.getElementById("save-button").style.fontWeight = "bold"
-      document.getElementById("save-button").style.borderWidth = "2px"
-    }
+    changesMade()
 
     const quests = document.getElementById("quests").getElementsByClassName("quest")
     
@@ -343,8 +349,7 @@ function saveJournal(logout, load = true) {
         return response.json();
     })
     .then(data => {
-        document.getElementById("save-button").style.fontWeight = "normal"
-        document.getElementById("save-button").style.borderWidth = "1px"
+        changesMade(true)
         if (load) clearUp()
         if (logout) location.reload()
     })
