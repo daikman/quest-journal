@@ -11,8 +11,8 @@ applyHandles("loginModal.handlebars", "login-modal", null)
 document.getElementById("overlay").style.display = "none"
 
 // init auto-saving
-setInterval(() => {
-    if (JOURNAL.length == 0) return
-    saveJournal(false, false)
-    console.log("autosaved")
-}, 10000)
+// setInterval(() => {
+//     if (JOURNAL.length == 0) return
+//     saveJournal(false, false)
+//     console.log("autosaved")
+// }, 10000)

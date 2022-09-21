@@ -1,5 +1,17 @@
 // DOM MANIPULATION AND SCRAPING
-function journalRemoveSub(task, sub) {
+function del(what, i, j) {
+  if (what == "quest") removeQuest(i)
+  if (what == "task") removeTask(i)
+  if (what == "sub") removeSub(i, j)
+}
+
+function add(what, i) {
+  if (what == "quest") addQuest()
+  if (what == "task") addTask()
+  if (what == "sub") addSub(i)
+}
+
+function removeSub(task, sub) {
 
   JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
 
@@ -22,7 +34,7 @@ function undo() {
   drawJournal()
 }
 
-function journalRemoveTask(task) {
+function removeTask(task) {
 
   JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
 
@@ -35,7 +47,7 @@ function journalRemoveTask(task) {
 
 }
 
-function journalRemoveQuest(quest) {
+function removeQuest(quest) {
 
   if (JOURNAL[0].quests.length < 2) {
     alert("Cannot delete only quest")
@@ -68,7 +80,7 @@ function undoRemove(which) {
 
 }
 
-function journalAddSub(task) {
+function addSub(task) {
   JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
 
   const subTemplate = {
@@ -83,7 +95,7 @@ function journalAddSub(task) {
 
 }
 
-function journalAddQuest() {
+function addQuest() {
   JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
   JOURNAL[0].quests.push({
     reward: "reward",
@@ -95,7 +107,7 @@ function journalAddQuest() {
   drawJournal()
 }
 
-function journalAddTask() {
+function addTask() {
   JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
   JOURNAL[0].quests[SELECTED_INDEX].tasks.push({
     complete: false,
@@ -109,6 +121,11 @@ function journalAddTask() {
 function scrapeQuest() {
 
     JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
+    if (JOURNAL_HISTORY.length != 0) {
+      document.getElementById("save-button").style.fontWeight = "bold"
+      document.getElementById("save-button").style.borderWidth = "2px"
+    }
+
     const quests = document.getElementById("quests").getElementsByClassName("quest")
     
     for (let i in quests) {
@@ -178,30 +195,32 @@ function saveLocal() {
 }
 
 function saveJournal(logout, load = true) {
-  
-    let url = 'https://quest-journal-api.glitch.me/save/'
-    let bod = {}
-    bod.journals = JOURNAL
-  
-    let config = {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(
-          bod
-        )
-    }
-    
-    if (load) cloudUp()
-    fetch(url, config)
-      .then(response => {
-          return response.json();
-      })
-      .then(data => {
-          if (load) clearUp()
-          if (logout) location.reload()
-      })
-  
+
+  let url = 'https://quest-journal-api.glitch.me/save/'
+  let bod = {}
+  bod.journals = JOURNAL
+
+  let config = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(
+        bod
+      )
   }
+  
+  if (load) cloudUp()
+  fetch(url, config)
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        document.getElementById("save-button").style.fontWeight = "normal"
+        document.getElementById("save-button").style.borderWidth = "1px"
+        if (load) clearUp()
+        if (logout) location.reload()
+    })
+
+}

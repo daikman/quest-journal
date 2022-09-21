@@ -50,3 +50,8 @@ function drawTasks() {
     // document.getElementById('tasks').innerHTML = taskTemplate({tasks})
     applyHandles("tasks.handlebars", "tasks", { tasks })
 }
+
+function unsavedChanges() {
+  document.getElementById("save-button").style.fontWeight = "bold"
+  document.getElementById("save-button").style.borderWidth = "2px"
+}
