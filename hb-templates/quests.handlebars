@@ -4,14 +4,16 @@
 </div>
 {{#each quests}}
     {{#if this.selected}}
-        <div class="quest selected">
-            <button id="select-quest" class="checkbox" role="checkbox"
-                onclick="modifySelected({{{this.i}}}); drawJournal();">
+        <div class="quest selected" onclick="modifySelected({{{this.i}}}); drawJournal();">
+            <button id="select-quest" class="checkbox" role="checkbox">
                 ●
             </button>
     {{else}}
         <div class="quest">
-            <button id="select-quest" class="checkbox" role="checkbox"
+            <button 
+                id="select-quest" 
+                class="checkbox" 
+                role="checkbox"
                 onclick="modifySelected({{{this.i}}}); drawJournal();">
                 ○
             </button>
@@ -22,6 +24,7 @@
                 class="in-out" 
                 placeholder="{{this.placeholder}}" 
                 value="{{this.title}}"
+                onclick="modifySelected({{{this.i}}}); drawJournal();"
             > 
             <p class="clickable" onclick="del('quest', {{{this.i}}})">-</p>
         </div>

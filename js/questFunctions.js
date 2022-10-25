@@ -71,7 +71,7 @@ function removeQuest(quest) {
 
   // constrain SELECTED_INDEX to length of quests
   if (SELECTED_INDEX > JOURNAL[0].quests.length - 1)
-    SELECTED_INDEX = JOURNAL[0].quests.length - 1
+    modifySelected(JOURNAL[0].quests.length - 1)
 
   drawJournal()
 
