@@ -5,25 +5,24 @@
 {{#each quests}}
     {{#if this.selected}}
         <div class="quest selected">
-            <p onclick="SELECTED_INDEX = {{{this.i}}}; drawJournal();" 
-            class="clickable" role="checkbox">
+            <button id="select-quest" class="checkbox" role="checkbox"
+                onclick="modifySelected({{{this.i}}}); drawJournal();">
                 ●
-            </p>
-            <p></p>
-            <p contenteditable="true" role="textbox" class="in-out">{{this.title}}</p>
-            <p></p>
-            <p class="clickable" onclick="del('quest', {{{this.i}}})">-</p>
-        </div>
+            </button>
     {{else}}
         <div class="quest">
-            <p onclick="SELECTED_INDEX = {{{this.i}}}; drawJournal();" 
-            class="clickable" role="checkbox">
+            <button id="select-quest" class="checkbox" role="checkbox"
+                onclick="modifySelected({{{this.i}}}); drawJournal();">
                 ○
-            </p>
-            <p></p>
-            <p contenteditable="true" role="textbox" class="in-out">{{this.title}}</p>
-            <p></p>
+            </button>
+    {{/if}}
+            <input 
+                type="text" 
+                role="textbox" 
+                class="in-out" 
+                placeholder="{{this.placeholder}}" 
+                value="{{this.title}}"
+            > 
             <p class="clickable" onclick="del('quest', {{{this.i}}})">-</p>
         </div>
-    {{/if}}
 {{/each}}

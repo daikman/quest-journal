@@ -1,4 +1,10 @@
-function applyHandles(filename, domId, data) {
+import { 
+  JOURNAL,
+  SELECTED_JOURNAL, 
+  SELECTED_INDEX, modifySelected
+ } from "./defaultJournal.js"
+
+function applyHandles(filename, domId, data, after) {
 
   fetch("./hb-templates/" + filename)
     .then(res => res.text())
@@ -6,20 +12,22 @@ function applyHandles(filename, domId, data) {
       const template = Handlebars.compile(text)
       document.getElementById(domId).innerHTML = template(data)
     })
+    .then(() => {
+      if (after) after()
+    })
   
 }
 
-function drawJournal() {
+export function drawJournal(afterQuests, afterTasks) {
 
   // contrain SELECTED_INDEX
-  if (SELECTED_INDEX < 0) SELECTED_INDEX = 0
+  if (SELECTED_INDEX < 0) modifySelected(0)
   
-  drawQuests()
-  drawTasks()
-  
+  drawQuests(afterQuests)
+  drawTasks(afterTasks)
 }
 
-function drawQuests() {
+function drawQuests(after) {
   const quests = JOURNAL[SELECTED_JOURNAL].quests
 
   // create quest list
@@ -29,36 +37,22 @@ function drawQuests() {
     quests[i].selected = i == SELECTED_INDEX
   }
 
-  applyHandles("quests.handlebars", "quests", { quests })
+  applyHandles("quests.handlebars", "quests", { quests }, after)
 
 }
 
-function drawTasks() {
+function drawTasks(after) {
   const quests = JOURNAL[SELECTED_JOURNAL].quests
   const tasks = quests[SELECTED_INDEX]?.tasks
-  // const taskTemplate = Handlebars.templates.tasks
 
-    // add indexes to tasks
-    for (let i in tasks) {
-      tasks[i].index = i
-      for (let j in tasks[i].subs) {
-        tasks[i].subs[j].i = i
-        tasks[i].subs[j].j = j
-      }
+  // add indexes to tasks
+  for (let i in tasks) {
+    tasks[i].index = i
+    for (let j in tasks[i].subs) {
+      tasks[i].subs[j].i = i
+      tasks[i].subs[j].j = j
     }
-
-    // document.getElementById('tasks').innerHTML = taskTemplate({tasks})
-    applyHandles("tasks.handlebars", "tasks", { tasks })
-}
-
-function changesMade(saved) {
-
-  if (JOURNAL_HISTORY.length == 0 | saved) {
-    document.getElementById("save-button").style.fontWeight = "normal"
-    document.getElementById("save-button").style.borderWidth = "1px"
-  } else {
-    document.getElementById("save-button").style.fontWeight = "bold"
-    document.getElementById("save-button").style.borderWidth = "2px"
   }
- 
+
+  applyHandles("tasks.handlebars", "tasks", { tasks }, after)
 }

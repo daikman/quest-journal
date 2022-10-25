@@ -4,7 +4,13 @@
 </div>
 {{#each tasks}}
     <div class="task">
-        <p contenteditable="true" role="textbox" class="in-out">{{this.name}}</p>   
+        <input 
+            type="text"
+            role="textbox" 
+            class="in-out" 
+            placeholder="{{this.placeholder}}" 
+            value="{{this.name}}"
+        >  
         <p></p>
         <p class="clickable" role="button" onclick="add('sub', {{{this.index}}})">+</p>
         <p></p>
@@ -12,7 +18,13 @@
         <div class="subtasks">
             {{#each this.subs}}
                 <div class="subtask">
-                    <p contenteditable="true" role="textbox" class="in-out">{{this.name}}</p>
+                    <input 
+                        type="text" 
+                        role="textbox" 
+                        class="in-out" 
+                        placeholder="{{this.placeholder}}" 
+                        value="{{this.name}}"
+                    >
                     <p></p>
                     <p class="clickable" role="button" 
                     onclick="del('sub', {{{this.i}}}, {{{this.j}}})">

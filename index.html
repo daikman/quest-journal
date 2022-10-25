@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles/main.css">
   <script src="./libs/handlebars@4.7.7.js"></script>
   <script src="./libs/p5@1.4.2.js"></script>
-  <script src="./bundle.js" defer></script>
+  <script src="./script.js" type="module" defer></script>
 </head>
   <body>
     <div id="background">
@@ -23,14 +23,13 @@
           <p>Connecting to Quest Journal...</p>
         </div>
       </div>
-      <div id="login-modal" role="dialog"></div>
       <header>
         <div id="header-title">
           <h1>Quest Journal</h1>
         </div>
         <div id="bin" class="collapsed"></div>
       </header>
-      <div class="journal" oninput="scrapeQuest();">
+      <div class="journal">
         <aside>
           <div id="quests"></div>
         </aside>
@@ -39,8 +38,7 @@
         </main>
       </div>
       <footer>
-        <button id="save-button" onclick="saveJournal(false)">Save</button>
-        <button id="logout-button" onclick="saveJournal(true)">Logout</button>
+        <a href="https://daikman.github.io/">created by David</a>
       </footer>
     </div>
   </body>

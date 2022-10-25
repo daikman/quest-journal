@@ -1,12 +1,24 @@
+import { JOURNAL, DEFAULT_JOURNAL, SELECTED_INDEX, modifyJournal, pushHistory, spliceHistory } from "./defaultJournal.js"
+import { drawJournal } from "./domFunctions.js";
+
 // DOM MANIPULATION AND SCRAPING
-function del(what, i, j) {
+function saveJournal() {
+  localStorage.setItem("JOURNAL", JSON.stringify(JOURNAL));
+}
+
+function changesMade(saved) {
+  pushHistory(JSON.parse(JSON.stringify(JOURNAL)))
+  saveJournal()
+}
+
+export function del(what, i, j) {
   if (what == "quest") removeQuest(i)
   if (what == "task") removeTask(i)
   if (what == "sub") removeSub(i, j)
   changesMade()
 }
 
-function add(what, i) {
+export function add(what, i) {
   if (what == "quest") addQuest()
   if (what == "task") addTask()
   if (what == "sub") addSub(i)
@@ -14,8 +26,6 @@ function add(what, i) {
 }
 
 function removeSub(task, sub) {
-
-  JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
 
   const filteredSubs = JOURNAL[0].quests[SELECTED_INDEX].tasks[task].subs.filter(d => d.j != sub)
 
@@ -31,14 +41,12 @@ function undo() {
     alert("Nothing to undo")
     return
   }
-  JOURNAL = JSON.parse(JSON.stringify(JOURNAL_HISTORY[JOURNAL_HISTORY.length - 1]))
-  JOURNAL_HISTORY.splice(JOURNAL_HISTORY.length - 1, 1)
+  modifyJournal(JSON.parse(JSON.stringify(JOURNAL_HISTORY[JOURNAL_HISTORY.length - 1])))
+  spliceHistory()
   drawJournal()
 }
 
 function removeTask(task) {
-
-  JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
 
   const filteredTasks = JOURNAL[0].quests[SELECTED_INDEX].tasks.filter(d => d.index != task)
 
@@ -55,10 +63,6 @@ function removeQuest(quest) {
     alert("Cannot delete only quest")
     return
   }
-
-  JOURNAL_HISTORY.push(
-    JSON.parse(JSON.stringify(JOURNAL))
-  )
 
   const filteredQuests = JOURNAL[0].quests.filter(d => d.i != quest)
 
@@ -83,54 +87,67 @@ function undoRemove(which) {
 }
 
 function addSub(task) {
-  JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
 
   const subTemplate = {
     name: "",
+    placeholder: "sub-task",
     complete: false,
     i: JOURNAL[0].quests[SELECTED_INDEX].tasks[task].subs.length - 1
   }
 
   JOURNAL[0].quests[SELECTED_INDEX].tasks[task].subs.push(subTemplate)
 
-  drawJournal()
+  function focusNewSub() {
+    const subs = document.getElementsByClassName("task")[task]
+    .getElementsByClassName("subtask")
+    const index = subs.length - 1
 
+    subs[index].children[0].focus()
+  }
+
+  drawJournal(null, focusNewSub)
+
+  // focus new element
+  
 }
 
 function addQuest() {
-  JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
+
   JOURNAL[0].quests.push({
     reward: "reward",
     selected: false,
     tasks: [],
-    title: "Quest"
+    title: "",
+    placeholder: "Quest"
   })
 
   drawJournal()
+
 }
 
 function addTask() {
-  JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
+
   JOURNAL[0].quests[SELECTED_INDEX].tasks.push({
     complete: false,
-    name: "Task",
+    name: "",
+    placeholder: "Task",
     subs: []
   })
 
   drawJournal()
+
 }
 
-function scrapeQuest() {
-
-    JOURNAL_HISTORY.push(JSON.parse(JSON.stringify(JOURNAL)))
-    changesMade()
+export function scrapeQuest() {
 
     const quests = document.getElementById("quests").getElementsByClassName("quest")
     
     for (let i in quests) {
       if (i == "length") break
       // get the selected quest name from the DOM 
-      JOURNAL[0].quests[i].title = quests[i].getElementsByClassName("in-out")[0].textContent
+      const questInput = quests[i].getElementsByClassName("in-out")[0]
+      JOURNAL[0].quests[i].title = questInput.value
+      JOURNAL[0].quests[i].placeholder = questInput.placeholder
     }
 
     // get the tasks from the DOM
@@ -141,7 +158,7 @@ function scrapeQuest() {
     for (let task of tasksDOM) {
 
         // get the text for each task
-        const taskText = task.getElementsByClassName('in-out')[0].textContent
+        const taskInput = task.getElementsByClassName('in-out')[0]
 
         // get subtasks from the DOM
         const subgroup = task.getElementsByClassName('subtasks')[0].getElementsByClassName("subtask")
@@ -149,16 +166,18 @@ function scrapeQuest() {
         let subtasks = []
         for (let subtask of subgroup) {  
             // get the text content from the DOM
-            const subText = subtask.getElementsByClassName('in-out')[0].textContent
+            const subInput = subtask.getElementsByClassName('in-out')[0]
             subtasks.push({
-                "name": subText,
+                "name": subInput.value,
+                "placeholder": subInput.placeholder,
                 "complete": false
             })
         }
 
         // add to array of task objects
         tasksObj.push({
-            "name": taskText, 
+            "name": taskInput.value, 
+            "placeholder": taskInput.placeholder, 
             "complete": false,
             "subs" : subtasks
         })
@@ -168,57 +187,16 @@ function scrapeQuest() {
     JOURNAL[0].quests[SELECTED_INDEX].tasks = tasksObj
     JOURNAL[0].quests[SELECTED_INDEX].reward = "reward"
 
+    changesMade()
+
 }
 
-// DATA AND API
-async function getQuests(user, password = false) {
-
-    const url = "https://quest-journal-api.glitch.me/get_journals/" + user
-
-    const quests = await fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        return data
-      })
-
-    return await quests
-}
-
-function saveLocal() {
-  // read json
-
-  // amend selected quest with global QUEST variable 
-  const selectedIndex = whichSelected()
-
-  // save json
-}
-
-function saveJournal(logout, load = true) {
-
-  let url = 'https://quest-journal-api.glitch.me/save/'
-  let bod = {}
-  bod.journals = JOURNAL
-
-  let config = {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(
-        bod
-      )
+export function load() {
+  if (localStorage.JOURNAL) {
+    modifyJournal(JSON.parse(localStorage.JOURNAL))
+  } else {
+    modifyJournal(DEFAULT_JOURNAL)
   }
-  
-  if (load) cloudUp()
-  fetch(url, config)
-    .then(response => {
-        return response.json();
-    })
-    .then(data => {
-        changesMade(true)
-        if (load) clearUp()
-        if (logout) location.reload()
-    })
-
+  saveJournal()
+  drawJournal()
 }

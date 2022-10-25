@@ -6,7 +6,8 @@ let SELECTED_JOURNAL = 0
 // array of objects that were deleted, along with where they were deleted from (i.e., parent object)
 let DELETED = []
 
-applyHandles("loginModal.handlebars", "login-modal", null)
+// applyHandles("loginModal.handlebars", "login-modal", null)
+load()
 
 document.getElementById("overlay").style.display = "none"
 

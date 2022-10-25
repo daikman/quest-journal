@@ -17,7 +17,7 @@ body {
 }
 
 #background img {
-    object-fit: contain;
+    width: 100%;
 }
 
 #background-overlay {
@@ -156,9 +156,10 @@ main {
 
 .quest {
     display: grid;
-    grid-template-columns: 10px 10px minmax(50%, 70%) 10px 10px;
+    grid-template-columns: 10px minmax(50%, 70%) 10px;
+    gap: 0.5em;
     color: lightgrey;
-    /* transition: all 200ms ease; */
+    transition: all 200ms ease;
 }
 
 .selected {
@@ -166,9 +167,17 @@ main {
     color: white;
 }
 
+.selected input[type="text"] {
+    font-weight: bold;
+}
+
 #tasks {
     padding: 26px;
     padding-top: 8px;
+}
+
+.checkbox {
+    border: none;
 }
 
 .task {
@@ -187,6 +196,12 @@ main {
 }
 
 .subtask p {
+    border: none;
+}
+
+.in-out {
+    background-color: transparent;
+    color: white;
     border: none;
 }
 
@@ -221,6 +236,16 @@ main {
 
 footer {
     border-top: 1px solid;
+}
+
+footer a {
+    color: lightgrey;
+    font-size: 0.8em;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: white;
 }
 
 /* SCROLLBAR */

@@ -3,8 +3,8 @@
     "handlebars": "^4.7.7"
   },
   "scripts": {
-    "dev-start": "combine-files js/domFunctions.js,js/foreground.js,js/questFunctions.js,js/userFunctions.js,js/z-initialize.js bundle.js && live-server --ignore=/js",
-    "build": "combine-files js/domFunctions.js,js/foreground.js,js/questFunctions.js,js/userFunctions.js,js/z-initialize.js bundle.js"
+    "dev-start": "combine-files js/defaultJournal.js,js/domFunctions.js,js/foreground.js,js/questFunctions.js,js/userFunctions.js,js/z-initialize.js bundle.js && live-server --ignore=/js",
+    "build": "combine-files js/defaultJournal.js,js/domFunctions.js,js/foreground.js,js/questFunctions.js,js/userFunctions.js,js/z-initialize.js bundle.js"
   },
   "devDependencies": {
     "combine-files": "^1.1.8",
